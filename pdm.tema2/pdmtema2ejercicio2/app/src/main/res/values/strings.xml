@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">pdm.tema2.ejercicio2</string>
+    <string name="calcular_precio_con_iva">Calcular precio con IVA</string>
+    <string name="precio_del_producto">Precio del producto</string>
 </resources>
