@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">pdm.tema2.ejercicio1</string>
+    <string name="meme">meme</string>
+    <string name="tira">tira</string>
 </resources>
