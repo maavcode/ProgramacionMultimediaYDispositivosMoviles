@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">pdm.tema3.ejercicio1</string>
+    <string name="app_name">pdmtema3ejercicio2</string>
 
     <string name="nombre1">Alfredo</string>
     <string name="dni1">312312321</string>
@@ -15,5 +15,4 @@
     <string name="dni3">312312521</string>
     <string name="telefono3">58412123</string>
     <string name="id3">3</string>
-
 </resources>

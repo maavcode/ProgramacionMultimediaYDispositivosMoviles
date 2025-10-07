@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
@@ -22,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.example.pdmtema2ejercicio1.ui.theme.Pdmtema2ejercicio1Theme
 
 class MainActivity : ComponentActivity() {
@@ -33,7 +36,8 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     App(
                         modifier = Modifier.padding(innerPadding)
-                            .fillMaxSize()
+                            .fillMaxWidth()
+                            .fillMaxHeight()
                             .wrapContentSize(Alignment.Center)
                     )
                 }
@@ -76,4 +80,5 @@ fun ImagenRandomBoton(modifier: Modifier = Modifier){
         }
     }
 }
+
 

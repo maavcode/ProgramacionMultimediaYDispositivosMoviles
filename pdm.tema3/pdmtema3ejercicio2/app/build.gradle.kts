@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pdmtema3ejercicio1"
+    namespace = "com.example.pdmtema3ejercicio2"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.pdmtema3ejercicio1"
+        applicationId = "com.example.pdmtema3ejercicio2"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -49,7 +49,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.ui.graphics)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
