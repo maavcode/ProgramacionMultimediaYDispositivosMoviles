@@ -1,11 +1,13 @@
 package com.example.pdmtema3ejercicio2
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -14,7 +16,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -52,7 +56,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TarjetaPersona (
-    persona: Persona
+    persona: Persona,
+    modifier: Modifier = Modifier
 ){
     Card(
         modifier = Modifier
@@ -67,7 +72,9 @@ fun TarjetaPersona (
                 painter = painterResource(persona.imageResourceId),
                 contentDescription = stringResource(persona.stringResourceNameId)
             )
-            Column {
+            Column (
+
+            ){
                 Text(
                     text = stringResource(persona.stringResourceNameId)
                 )
@@ -94,9 +101,11 @@ fun ListaPersonas (
         modifier = modifier
     ){
         items(lista){persona->
-            TarjetaPersona(
+            ItemPersona(
                 persona = persona,
-                modifier = Modifier.padding(8.dp)
+                onItemClick = { personaElegida ->
+                    Log.v("Persona pulsada: ", personaElegida.stringResourceIdId.toString())
+                }
             )
         }
 
@@ -104,12 +113,27 @@ fun ListaPersonas (
 }
 
 @Composable
+fun ItemPersona (
+    persona: Persona,
+    onItemClick: (Persona) -> Unit
+){
+    TarjetaPersona(
+        persona = persona,
+        modifier = Modifier
+            .clickable{onItemClick(persona)}
+            .padding(8.dp)
+    )
+}
+
+@Composable
 fun App (
     modifier: Modifier = Modifier
 ){
     ListaPersonas(
-        lista = Datos.
+        modifier = modifier,
+        lista = Datos().cargarPersonas()
     )
+
 }
 
 @Preview(showBackground = true)
