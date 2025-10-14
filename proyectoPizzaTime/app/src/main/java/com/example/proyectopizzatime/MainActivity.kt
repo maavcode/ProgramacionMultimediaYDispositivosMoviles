@@ -69,6 +69,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     ProyectoPizzaTimeTheme {
-
+        PantallaInicial()
     }
 }

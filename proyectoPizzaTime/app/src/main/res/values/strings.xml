@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">proyectoPizzaTime</string>
+    <!-- Personas -->
+    <string name="id1">1</string>
+    <string name="nombre1">Yunara Suarez Kilombo</string>
+    <string name="correo1">yunarasuarezkilo@gmail.com</string>
+    <string name="telefono1">652899569</string>
+
+
+
 </resources>

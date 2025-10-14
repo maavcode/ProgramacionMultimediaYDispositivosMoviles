@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,14 +18,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.proyectopizzatime.datos.Datos
+import com.example.proyectopizzatime.ui.theme.Persona
+import com.example.proyectopizzatime.ui.theme.ProyectoPizzaTimeTheme
+
+
 
 @Composable
 fun PantallaInicial (
     modifier: Modifier = Modifier
 ){
+    val listaPersonas = Datos().cargarPersonas();
+    val persona1 = listaPersonas[0]
     Column (
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -37,10 +47,11 @@ fun PantallaInicial (
         )
 
         InformacionPersonal(
-            modifier = Modifier.padding(top = 30.dp, bottom = 30.dp)
+            modifier = Modifier.padding(top = 30.dp, bottom = 30.dp),
+            persona = persona1 // Paso la persona como parametro
         )
 
-        Divider(
+        HorizontalDivider(
             color = Color.Gray,
             thickness = 1.dp,
             modifier = Modifier.padding(20.dp)
@@ -54,7 +65,8 @@ fun PantallaInicial (
 
 @Composable
 fun InformacionPersonal(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    persona : Persona
 ){
     Column (
         modifier = modifier,
@@ -70,14 +82,14 @@ fun InformacionPersonal(
 
         )
         Text(
-            text = "Yunara Suarez Kilombo",
+            text = persona.nombre,
             fontSize = 20.sp
         )
         Text(
-            text = "yunarasuarezkilo@gmail.com"
+            text = persona.correo
         )
         Text(
-            text = "652899569"
+            text = persona.telefono
         )
     }
 
@@ -121,5 +133,13 @@ fun OpcionesUsuario (
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PantallaInicialPreview() {
+    ProyectoPizzaTimeTheme {
+        PantallaInicial()
     }
 }
