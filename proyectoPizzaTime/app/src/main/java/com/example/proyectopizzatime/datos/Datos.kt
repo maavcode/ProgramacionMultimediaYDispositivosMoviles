@@ -27,9 +27,52 @@ class Datos{
                 precioPizza = 0.0,
                 precioBebida = 0.0,
                 precioTotal = 0.0,
-
-
-            )
+            ),
+            Pedido(
+                idPedido = 1,
+                pizza = "Barbacoa",
+                tamanoPizza = "Mediana",
+                bebida = "Agua",
+                precioPizza = 0.0,
+                precioBebida = 0.0,
+                precioTotal = 0.0,
+            ),
+            Pedido(
+                idPedido = 1,
+                pizza = "Barbacoa",
+                tamanoPizza = "Mediana",
+                bebida = "Agua",
+                precioPizza = 0.0,
+                precioBebida = 0.0,
+                precioTotal = 0.0,
+            ),
+            Pedido(
+                idPedido = 1,
+                pizza = "Barbacoa",
+                tamanoPizza = "Mediana",
+                bebida = "Agua",
+                precioPizza = 0.0,
+                precioBebida = 0.0,
+                precioTotal = 0.0,
+            ),
+            Pedido(
+                idPedido = 1,
+                pizza = "Barbacoa",
+                tamanoPizza = "Mediana",
+                bebida = "Agua",
+                precioPizza = 0.0,
+                precioBebida = 0.0,
+                precioTotal = 0.0,
+            ),
+            Pedido(
+                idPedido = 1,
+                pizza = "Barbacoa",
+                tamanoPizza = "Mediana",
+                bebida = "Agua",
+                precioPizza = 0.0,
+                precioBebida = 0.0,
+                precioTotal = 0.0,
+            ),
         )
     }
 }
