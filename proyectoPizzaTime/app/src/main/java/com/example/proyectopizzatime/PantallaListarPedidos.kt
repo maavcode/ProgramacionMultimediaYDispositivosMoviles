@@ -57,7 +57,7 @@ import com.example.proyectopizzatime.ui.theme.ProyectoPizzaTimeTheme
             )
         }
     }
-}*/
+}*/ // No me dejaba scrollear
 fun PantallaListarPedidos(
     modifier: Modifier = Modifier,
 ) {
