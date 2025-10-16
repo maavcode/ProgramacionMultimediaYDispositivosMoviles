@@ -1,6 +1,5 @@
 package com.example.proyectopizzatime
 
-import android.widget.Button
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,21 +23,28 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.proyectopizzatime.ui.theme.ProyectoPizzaTimeTheme
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import com.example.compose.AppTheme
 
 @Composable
 fun PantallaRealizarPedido(
     modifier: Modifier = Modifier
 ){
     var tipoPizza by remember { mutableStateOf("") }
+    var tipoBebida by remember { mutableStateOf("") }
+    var tamanoPizza by remember { mutableStateOf("") }
+    var precioTotal by remember { mutableStateOf(0) }
+    var cantidadPizza by remember { mutableStateOf(0) }
+    var cantidadBebida by remember { mutableStateOf(0) }
     LazyColumn (
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier
@@ -60,6 +66,16 @@ fun PantallaRealizarPedido(
         }
 
         item {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                text = "TOTAL: ${"%.2f".format(getPrecio(cantidadBebida = cantidadBebida, tamanoPizza = tamanoPizza, tipoBebida = tipoBebida, cantidadPizza = cantidadPizza))}",
+                textAlign = TextAlign.Center,
+                fontSize = 24.sp
+            )
+        }
+
+        item {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -75,7 +91,8 @@ fun PantallaRealizarPedido(
                 ) {
                     Text(
                         text = "Pizza",
-                        fontSize = 20.sp
+                        fontSize = 26.sp,
+                        fontWeight = FontWeight.Bold
                     )
 
                     val radioOptions = listOf("Romana", "Barbacoa", "Margarita")
@@ -163,10 +180,9 @@ fun PantallaRealizarPedido(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(10.dp)
                             ){
-                                var cantidad by remember { mutableStateOf(0) }
-                                if (cantidad!=0){
+                                if (cantidadPizza!=0){
                                     Button(
-                                        onClick = {cantidad--},
+                                        onClick = {cantidadPizza--},
                                     ) {
                                         Text("-")
                                     }
@@ -174,11 +190,11 @@ fun PantallaRealizarPedido(
 
 
                                 Text(
-                                    text = cantidad.toString()
+                                    text = cantidadPizza.toString()
                                 )
 
                                 Button(
-                                    onClick = {cantidad++},
+                                    onClick = {cantidadPizza++},
                                 ) {
                                     Text("+")
                                 }
@@ -197,24 +213,63 @@ fun PantallaRealizarPedido(
 
 
         }
+        if (tipoPizza.isNotEmpty()){
+            item {
+                Text(
+                    text = "Tamaño de la pizza",
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                val opciones = listOf("Pequeña", "Mediana", "Grande")
+
+                opciones.forEach { opcion ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .padding(vertical = 4.dp)
+                            .clickable { tamanoPizza = opcion } // también se puede tocar el texto
+                    ) {
+                        Checkbox(
+                            checked = (tamanoPizza == opcion),
+                            onCheckedChange = { tamanoPizza = opcion } // solo uno se marca
+                        )
+                        Text(
+                            text = opcion,
+                            modifier = Modifier.padding(start = 10.dp)
+                        )
+                    }
+                }
+
+                HorizontalDivider(
+                    color = Color.Gray,
+                    thickness = 1.dp
+                )
+            }
+        }
 
         item {
-            var bebidaSeleccionada by remember { mutableStateOf("") }
-            
+
+            Text(
+                text = "Bebida",
+                fontSize = 26.sp,
+                fontWeight = FontWeight.Bold
+            )
+
             Row (
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ){
-                val listaBebidas = listOf("Agua", "Refresco", "Fanta")
+                val listaBebidas = listOf("Agua", "Cola", "Sin bebida")
 
                 listaBebidas.forEach { bebida ->
                     Button(
-                        onClick = {bebidaSeleccionada=bebida},
+                        onClick = {tipoBebida=bebida},
                         colors = ButtonDefaults
                             .buttonColors(
-                                containerColor = if (bebidaSeleccionada == bebida) Color(0xFF4CAF50) else Color.Gray
-                            )
+                                containerColor = if (tipoBebida == bebida) Color(0xFF4CAF50) else Color.Gray
+                            ),
+                        modifier = Modifier.padding(10.dp)
                     ){
                         Text(
                             text = bebida
@@ -222,17 +277,95 @@ fun PantallaRealizarPedido(
                     }
                 }
             }
+            if (tipoBebida.isNotEmpty()) {
+                Row (
+                    modifier = Modifier.height(200.dp)
+                ){
+                    Column (
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight(),
+                    ){
+                        val imageOption = when(tipoBebida) {
+                            "Agua" -> R.drawable.person
+                            "Refresco" -> R.drawable.person
+                            "Sin bebida" -> R.drawable.person
+                            else -> R.drawable.person
+                        }
+                        Image(
+                            painter = painterResource(imageOption),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .fillMaxSize(),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
+                    Column (
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
 
-            HorizontalDivider(
-                color = Color.Gray,
-                thickness = 1.dp
-            )
+                    ){
+                        Text(
+                            text = "Cantidad"
+                        )
+                        Row (
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(10.dp)
+                        ){
+                            if (cantidadBebida!=0){
+                                Button(
+                                    onClick = {cantidadBebida--},
+                                ) {
+                                    Text("-")
+                                }
+                            }
+
+
+                            Text(
+                                text = cantidadBebida.toString()
+                            )
+
+                            Button(
+                                onClick = {cantidadBebida++},
+                            ) {
+                                Text("+")
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+
         }
 
 
     }
 }
 
+fun getPrecio(tamanoPizza: String,tipoBebida: String, cantidadPizza: Int, cantidadBebida: Int ): Double {
+    var precioPizza: Double = 0.0
+    when(tamanoPizza){
+        "Pequeña" -> precioPizza = 4.95
+        "Mediana" -> precioPizza = 6.95
+        "Grande" -> precioPizza = 10.95
+    }
+    var precioBebida: Double = 0.0
+    when(tipoBebida){
+        "Agua" -> precioBebida = 2.0
+        "Cola" -> precioBebida = 2.5
+        "Sin bebida" -> precioBebida = 0.0
+    }
+
+
+    val precioTotal: Double = (precioPizza*cantidadPizza) + (precioBebida*cantidadBebida)
+    return precioTotal
+}
 @Composable
 fun OpcionesPizza(
     modifier: Modifier = Modifier,
@@ -291,7 +424,7 @@ fun OpcionesPizza(
 @Preview(showBackground = true)
 @Composable
 fun PantallaRealizarPedidoPreview() {
-    ProyectoPizzaTimeTheme {
+    AppTheme {
         PantallaRealizarPedido()
     }
 }
