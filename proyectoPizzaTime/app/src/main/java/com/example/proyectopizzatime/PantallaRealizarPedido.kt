@@ -42,7 +42,6 @@ fun PantallaRealizarPedido(
     var tipoPizza by remember { mutableStateOf("") }
     var tipoBebida by remember { mutableStateOf("") }
     var tamanoPizza by remember { mutableStateOf("") }
-    var precioTotal by remember { mutableStateOf(0) }
     var cantidadPizza by remember { mutableStateOf(0) }
     var cantidadBebida by remember { mutableStateOf(0) }
     LazyColumn (
@@ -145,9 +144,9 @@ fun PantallaRealizarPedido(
                     modifier = Modifier.height(200.dp)
                 ){
                     val imageOption = when(tipoPizza) {
-                        "Romana" -> R.drawable.person
-                        "Barbacoa" -> R.drawable.person
-                        "Margarita" -> R.drawable.person
+                        "Romana" -> R.drawable.romana
+                        "Barbacoa" -> R.drawable.barbacoa
+                        "Margarita" -> R.drawable.margarita
                         else -> R.drawable.person
                     }
 
@@ -277,7 +276,7 @@ fun PantallaRealizarPedido(
                     }
                 }
             }
-            if (tipoBebida.isNotEmpty()) {
+            if (tipoBebida.isNotEmpty() || tipoBebida == "Sin bebida") {
                 Row (
                     modifier = Modifier.height(200.dp)
                 ){
@@ -287,9 +286,8 @@ fun PantallaRealizarPedido(
                             .fillMaxHeight(),
                     ){
                         val imageOption = when(tipoBebida) {
-                            "Agua" -> R.drawable.person
-                            "Refresco" -> R.drawable.person
-                            "Sin bebida" -> R.drawable.person
+                            "Agua" -> R.drawable.agua
+                            "Cola" -> R.drawable.cola
                             else -> R.drawable.person
                         }
                         Image(
@@ -383,7 +381,7 @@ fun OpcionesPizza(
         }
 
         "Margarita" -> {
-            radioOptions = listOf("Con piña", "Sin piña", "vegana")
+            radioOptions = listOf("Con piña", "Sin piña", "Vegana")
         }
     }
     // Hago que la opcion que se vaya a elejir sea mutable

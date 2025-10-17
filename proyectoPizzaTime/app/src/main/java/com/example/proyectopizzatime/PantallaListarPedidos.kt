@@ -107,7 +107,7 @@ fun TarjetaPedido (
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ){
             Text(
-                text = "Pedido: " + pedido.pizza + " + " + pedido.bebida
+                text = "Pedido: " + pedido.tipoPizza + " + " + pedido.tipoBebida
             )
             Button(
                 onClick = {}

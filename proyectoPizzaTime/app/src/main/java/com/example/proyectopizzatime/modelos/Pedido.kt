@@ -6,10 +6,10 @@ import com.example.proyectopizzatime.ui.theme.Persona
 
 data class Pedido (
     val idPedido: Int,
-    val pizza: String,
+    val tipoPizza: String,
+    val cantidadPizza: Int,
     val tamanoPizza: String,
-    val bebida: String,
-    val precioPizza: Double,
-    val precioBebida: Double,
+    val tipoBebida: String,
+    val cantidadBebida: Int,
     val precioTotal: Double
     )

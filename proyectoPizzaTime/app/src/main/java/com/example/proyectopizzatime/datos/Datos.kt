@@ -20,59 +20,59 @@ class Datos{
     fun cargarPedidos(): List<Pedido> {
         return listOf(
             Pedido(
-                idPedido = 1,
-                pizza = "Barbacoa",
+                idPedido = 0,
+                tipoPizza = "Margarita",
                 tamanoPizza = "Mediana",
-                bebida = "Agua",
-                precioPizza = 0.0,
-                precioBebida = 0.0,
-                precioTotal = 0.0,
+                cantidadPizza = 2,
+                tipoBebida = "Agua",
+                cantidadBebida = 1,
+                precioTotal = 24.58
             ),
             Pedido(
-                idPedido = 1,
-                pizza = "Barbacoa",
+                idPedido = 0,
+                tipoPizza = "Margarita",
                 tamanoPizza = "Mediana",
-                bebida = "Agua",
-                precioPizza = 0.0,
-                precioBebida = 0.0,
-                precioTotal = 0.0,
+                cantidadPizza = 2,
+                tipoBebida = "Agua",
+                cantidadBebida = 1,
+                precioTotal = 24.58
             ),
             Pedido(
-                idPedido = 1,
-                pizza = "Barbacoa",
+                idPedido = 0,
+                tipoPizza = "Margarita",
                 tamanoPizza = "Mediana",
-                bebida = "Agua",
-                precioPizza = 0.0,
-                precioBebida = 0.0,
-                precioTotal = 0.0,
+                cantidadPizza = 2,
+                tipoBebida = "Agua",
+                cantidadBebida = 1,
+                precioTotal = 24.58
             ),
             Pedido(
-                idPedido = 1,
-                pizza = "Barbacoa",
+                idPedido = 0,
+                tipoPizza = "Margarita",
                 tamanoPizza = "Mediana",
-                bebida = "Agua",
-                precioPizza = 0.0,
-                precioBebida = 0.0,
-                precioTotal = 0.0,
+                cantidadPizza = 2,
+                tipoBebida = "Agua",
+                cantidadBebida = 1,
+                precioTotal = 24.58
             ),
             Pedido(
-                idPedido = 1,
-                pizza = "Barbacoa",
+                idPedido = 0,
+                tipoPizza = "Margarita",
                 tamanoPizza = "Mediana",
-                bebida = "Agua",
-                precioPizza = 0.0,
-                precioBebida = 0.0,
-                precioTotal = 0.0,
+                cantidadPizza = 2,
+                tipoBebida = "Agua",
+                cantidadBebida = 1,
+                precioTotal = 24.58
             ),
             Pedido(
-                idPedido = 1,
-                pizza = "Barbacoa",
+                idPedido = 0,
+                tipoPizza = "Margarita",
                 tamanoPizza = "Mediana",
-                bebida = "Agua",
-                precioPizza = 0.0,
-                precioBebida = 0.0,
-                precioTotal = 0.0,
-            ),
+                cantidadPizza = 2,
+                tipoBebida = "Agua",
+                cantidadBebida = 1,
+                precioTotal = 24.58
+            )
         )
     }
 }
