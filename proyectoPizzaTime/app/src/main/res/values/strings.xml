@@ -1,11 +1,52 @@
 <resources>
     <string name="app_name">proyectoPizzaTime</string>
-    <!-- Personas -->
-    <string name="id1">1</string>
-    <string name="nombre1">Yunara Suarez Kilombo</string>
-    <string name="correo1">yunarasuarezkilo@gmail.com</string>
-    <string name="telefono1">652899569</string>
-
+    <string name="bienvenido_a_pizzatime">Bienvenido a PizzaTime</string>
+    <string name="persona">persona</string>
+    <string name="que_vas_a_hacer">¿Que vas a hacer?</string>
+    <string name="realizar_pedido">Realizar pedido</string>
+    <string name="listar_pedidos">Listar pedidos</string>
+    <string name="lista_de_pedidos">Lista de Pedidos</string>
+    <string name="pedido">"Pedido: "</string>
+    <string name="resumen_del_pedido">Resumen del pedido</string>
+    <string name="realizar_un_pedido">Realizar un pedido</string>
+    <string name="total">"TOTAL: "</string>
+    <string name="pizza">Pizza</string>
+    <string name="romana">Romana</string>
+    <string name="barbacoa">Barbacoa</string>
+    <string name="margarita">Margarita</string>
+    <string name="opciones_de_pizza">Opciones de pizza</string>
+    <string name="cantidad">Cantidad</string>
+    <string name="tama_o_de_la_pizza">Tamaño de la pizza</string>
+    <string name="peque_a">Pequeña</string>
+    <string name="mediana">Mediana</string>
+    <string name="grande">Grande</string>
+    <string name="bebida">Bebida</string>
+    <string name="agua">Agua</string>
+    <string name="cola">Cola</string>
+    <string name="sin_bebida">Sin bebida</string>
+    <string name="con_champi_ones">Con champiñones</string>
+    <string name="sin_champi_ones">Sin champiñones</string>
+    <string name="carne_de_cerdo">Carne de cerdo</string>
+    <string name="carne_de_pollo">Carne de pollo</string>
+    <string name="carne_de_ternera">Carne de ternera</string>
+    <string name="con_pi_a">Con piña</string>
+    <string name="sin_pi_a">Sin piña</string>
+    <string name="vegana">Vegana</string>
+    <string name="tama_o">Tamaño</string>
+    <string name="precio_total">"Precio Total: "</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="visa">VISA</string>
+    <string name="mastercard">MasterCard</string>
+    <string name="euro_6000">Euro 6000</string>
+    <string name="formulario_de_pago">Formulario de pago</string>
+    <string name="metodo_de_pago">Metodo de pago</string>
+    <string name="numero_de_tarjera">Numero de tarjera</string>
+    <string name="fecha_caducidad_mm_aa">Fecha caducidad (MM/AA)</string>
+    <string name="cvv">CVV</string>
+    <string name="importe_total">Importe total</string>
+    <string name="resumen_del_pago">Resumen del pago</string>
+    <string name="enviar">Enviar</string>
 
 
 </resources>

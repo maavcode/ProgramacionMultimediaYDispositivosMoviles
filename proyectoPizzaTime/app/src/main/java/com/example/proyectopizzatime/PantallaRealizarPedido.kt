@@ -15,7 +15,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -31,8 +30,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.example.compose.AppTheme
 
 @Composable
@@ -50,7 +51,7 @@ fun PantallaRealizarPedido(
     ){
         item {
             Text(
-                text = "Realizar un pedido",
+                text = stringResource(R.string.realizar_un_pedido),
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
@@ -68,7 +69,7 @@ fun PantallaRealizarPedido(
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = "TOTAL: ${"%.2f".format(getPrecio(cantidadBebida = cantidadBebida, tamanoPizza = tamanoPizza, tipoBebida = tipoBebida, cantidadPizza = cantidadPizza))}",
+                text = " ${stringResource(R.string.total)} ${"%.2f".format(getPrecio(cantidadBebida = cantidadBebida, tamanoPizza = tamanoPizza, tipoBebida = tipoBebida, cantidadPizza = cantidadPizza))}",
                 textAlign = TextAlign.Center,
                 fontSize = 24.sp
             )
@@ -89,12 +90,14 @@ fun PantallaRealizarPedido(
                         .selectableGroup()
                 ) {
                     Text(
-                        text = "Pizza",
+                        text = stringResource(R.string.pizza),
                         fontSize = 26.sp,
                         fontWeight = FontWeight.Bold
                     )
 
-                    val radioOptions = listOf("Romana", "Barbacoa", "Margarita")
+                    val radioOptions = listOf(stringResource(R.string.romana),
+                        stringResource(R.string.barbacoa), stringResource(R.string.margarita)
+                    )
                     radioOptions.forEach { radioOption ->
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
@@ -129,7 +132,7 @@ fun PantallaRealizarPedido(
 
                         ){
                             Text(
-                                text = "Opciones de pizza",
+                                text = stringResource(R.string.opciones_de_pizza),
                                 fontSize = 20.sp
                             )
                             OpcionesPizza(tipoPizza = tipoPizza)
@@ -144,9 +147,9 @@ fun PantallaRealizarPedido(
                     modifier = Modifier.height(200.dp)
                 ){
                     val imageOption = when(tipoPizza) {
-                        "Romana" -> R.drawable.romana
-                        "Barbacoa" -> R.drawable.barbacoa
-                        "Margarita" -> R.drawable.margarita
+                        stringResource(R.string.romana) -> R.drawable.romana
+                        stringResource(R.string.barbacoa) -> R.drawable.barbacoa
+                        stringResource(R.string.margarita) -> R.drawable.margarita
                         else -> R.drawable.person
                     }
 
@@ -173,7 +176,7 @@ fun PantallaRealizarPedido(
 
                         ){
                             Text(
-                                text = "Cantidad"
+                                text = stringResource(R.string.cantidad)
                             )
                             Row (
                                 verticalAlignment = Alignment.CenterVertically,
@@ -215,11 +218,13 @@ fun PantallaRealizarPedido(
         if (tipoPizza.isNotEmpty()){
             item {
                 Text(
-                    text = "Tamaño de la pizza",
+                    text = stringResource(R.string.tama_o_de_la_pizza),
                     fontSize = 26.sp,
                     fontWeight = FontWeight.Bold
                 )
-                val opciones = listOf("Pequeña", "Mediana", "Grande")
+                val opciones = listOf(stringResource(R.string.peque_a),
+                    stringResource(R.string.mediana), stringResource(R.string.grande)
+                )
 
                 opciones.forEach { opcion ->
                     Row(
@@ -249,7 +254,7 @@ fun PantallaRealizarPedido(
         item {
 
             Text(
-                text = "Bebida",
+                text = stringResource(R.string.bebida),
                 fontSize = 26.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -259,7 +264,9 @@ fun PantallaRealizarPedido(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ){
-                val listaBebidas = listOf("Agua", "Cola", "Sin bebida")
+                val listaBebidas = listOf(stringResource(R.string.agua),
+                    stringResource(R.string.cola), stringResource(R.string.sin_bebida)
+                )
 
                 listaBebidas.forEach { bebida ->
                     Button(
@@ -276,7 +283,7 @@ fun PantallaRealizarPedido(
                     }
                 }
             }
-            if (tipoBebida.isNotEmpty() || tipoBebida == "Sin bebida") {
+            if (tipoBebida.isNotEmpty() && tipoBebida != stringResource(R.string.sin_bebida)) {
                 Row (
                     modifier = Modifier.height(200.dp)
                 ){
@@ -286,8 +293,8 @@ fun PantallaRealizarPedido(
                             .fillMaxHeight(),
                     ){
                         val imageOption = when(tipoBebida) {
-                            "Agua" -> R.drawable.agua
-                            "Cola" -> R.drawable.cola
+                            stringResource(R.string.agua) -> R.drawable.agua
+                            stringResource(R.string.cola) -> R.drawable.cola
                             else -> R.drawable.person
                         }
                         Image(
@@ -308,7 +315,7 @@ fun PantallaRealizarPedido(
 
                     ){
                         Text(
-                            text = "Cantidad"
+                            text = stringResource(R.string.cantidad)
                         )
                         Row (
                             verticalAlignment = Alignment.CenterVertically,
@@ -342,22 +349,40 @@ fun PantallaRealizarPedido(
 
         }
 
+        item {
+            Column (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(20.dp)
+                ) {
+                    Button(onClick = {}) {
+                        Text(stringResource(R.string.cancelar))
+                    }
+                    Button(onClick = {}) {
+                        Text(stringResource(R.string.aceptar))
+                    }
+                }
+            }
 
+        }
     }
 }
 
-fun getPrecio(tamanoPizza: String,tipoBebida: String, cantidadPizza: Int, cantidadBebida: Int ): Double {
+@Composable
+fun getPrecio(tamanoPizza: String, tipoBebida: String, cantidadPizza: Int, cantidadBebida: Int ): Double {
     var precioPizza: Double = 0.0
     when(tamanoPizza){
-        "Pequeña" -> precioPizza = 4.95
-        "Mediana" -> precioPizza = 6.95
-        "Grande" -> precioPizza = 10.95
+        stringResource(R.string.peque_a) -> precioPizza = 4.95
+        stringResource(R.string.mediana) -> precioPizza = 6.95
+        stringResource(R.string.grande) -> precioPizza = 10.95
     }
     var precioBebida: Double = 0.0
     when(tipoBebida){
-        "Agua" -> precioBebida = 2.0
-        "Cola" -> precioBebida = 2.5
-        "Sin bebida" -> precioBebida = 0.0
+        stringResource(R.string.agua) -> precioBebida = 2.0
+        stringResource(R.string.cola) -> precioBebida = 2.5
+        stringResource(R.string.sin_bebida) -> precioBebida = 0.0
     }
 
 
@@ -372,16 +397,22 @@ fun OpcionesPizza(
     // Segun el tipo de pizza de doy unas opciones u otras
     var radioOptions: List<String> = emptyList()
     when (tipoPizza) {
-        "Romana" -> {
-            radioOptions = listOf("Con champiñones", "Sin champiñones")
+        stringResource(R.string.romana) -> {
+            radioOptions = listOf(stringResource(R.string.con_champi_ones),
+                stringResource(R.string.sin_champi_ones)
+            )
         }
 
-        "Barbacoa" -> {
-            radioOptions = listOf("Carne de cerdo", "Carne de pollo", "Carne de ternera")
+        stringResource(R.string.barbacoa) -> {
+            radioOptions = listOf(stringResource(R.string.carne_de_cerdo),
+                stringResource(R.string.carne_de_pollo), stringResource(R.string.carne_de_ternera)
+            )
         }
 
-        "Margarita" -> {
-            radioOptions = listOf("Con piña", "Sin piña", "Vegana")
+        stringResource(R.string.margarita) -> {
+            radioOptions = listOf(stringResource(R.string.con_pi_a),
+                stringResource(R.string.sin_pi_a), stringResource(R.string.vegana)
+            )
         }
     }
     // Hago que la opcion que se vaya a elejir sea mutable

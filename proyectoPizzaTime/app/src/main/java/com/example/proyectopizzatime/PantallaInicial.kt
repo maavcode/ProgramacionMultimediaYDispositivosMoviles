@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,13 +35,13 @@ fun PantallaInicial (
     modifier: Modifier = Modifier
 ){
     val listaPersonas = Datos().cargarPersonas();
-    val persona1 = listaPersonas[0]
+    val personaPrueba = listaPersonas[0]
     Column (
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         Text(
-            text = "Bienvenido a PizzaTime",
+            text = stringResource(R.string.bienvenido_a_pizzatime),
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.Start)
@@ -48,7 +49,7 @@ fun PantallaInicial (
 
         InformacionPersonal(
             modifier = Modifier.padding(top = 30.dp, bottom = 30.dp),
-            persona = persona1 // Paso la persona como parametro
+            persona = personaPrueba // Paso la persona como parametro
         )
 
         HorizontalDivider(
@@ -76,7 +77,7 @@ fun InformacionPersonal(
     ){
         Image(
             painter = painterResource(R.drawable.person),
-            contentDescription = "person",
+            contentDescription = stringResource(R.string.persona),
             Modifier
                 .border(
                     width = 5.dp,
@@ -110,7 +111,7 @@ fun OpcionesUsuario (
         horizontalAlignment = Alignment.CenterHorizontally,
     ){
         Text(
-            text = "¿Que vas a hacer?",
+            text = stringResource(R.string.que_vas_a_hacer),
             fontSize = 24.sp
         )
         Row (
@@ -124,7 +125,7 @@ fun OpcionesUsuario (
                     .height(50.dp)
             ) {
                 Text(
-                    text = "Realizar pedido"
+                    text = stringResource(R.string.realizar_pedido)
                 )
             }
 
@@ -135,7 +136,7 @@ fun OpcionesUsuario (
                     .height(50.dp)
             ) {
                 Text(
-                    text = "Listar pedidos"
+                    text = stringResource(R.string.listar_pedidos)
                 )
             }
         }

@@ -45,7 +45,21 @@ class MainActivity : ComponentActivity() {
                             .statusBarsPadding()
                             .padding(start = 20.dp, end = 20.dp)
                     )*/
-                    PantallaResumenPepido(
+                    /*PantallaResumenPepido(
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .fillMaxSize()
+                            .statusBarsPadding()
+                            .padding(start = 20.dp, end = 20.dp)
+                    )*/
+                    /*PantallaFormularioPago(
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .fillMaxSize()
+                            .statusBarsPadding()
+                            .padding(start = 20.dp, end = 20.dp)
+                    )*/
+                    PantallaResumenPago(
                         modifier = Modifier
                             .padding(innerPadding)
                             .fillMaxSize()

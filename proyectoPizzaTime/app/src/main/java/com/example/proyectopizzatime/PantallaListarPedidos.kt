@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,7 +61,7 @@ import com.example.proyectopizzatime.modelos.Pedido
 fun PantallaListarPedidos(
     modifier: Modifier = Modifier,
 ) {
-    val listaPedidos = Datos().cargarPedidos()
+    val listaPedidos = Datos().cargarPersonas().get(0).listaPedidos
 
     LazyColumn(
         modifier = modifier.fillMaxSize(),
@@ -69,7 +70,7 @@ fun PantallaListarPedidos(
     ) {
         item {
             Text(
-                text = "Lista de Pedidos",
+                text = stringResource(R.string.lista_de_pedidos),
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
@@ -107,13 +108,13 @@ fun TarjetaPedido (
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ){
             Text(
-                text = "Pedido: " + pedido.tipoPizza + " + " + pedido.tipoBebida
+                text = stringResource(R.string.pedido) + pedido.tipoPizza + " + " + pedido.tipoBebida
             )
             Button(
                 onClick = {}
             ) {
                 Text(
-                    text = "Resumen del pedido"
+                    text = stringResource(R.string.resumen_del_pedido)
                 )
             }
         }

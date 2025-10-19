@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -23,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,7 +37,7 @@ import com.example.proyectopizzatime.datos.Datos
 fun PantallaResumenPepido(
     modifier: Modifier = Modifier
 ){
-    val pedidoPrueba = Datos().cargarPedidos().get(0)
+    val pedidoPrueba = Datos().cargarPersonas().get(0).listaPedidos.get(0)
     Column (
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier
@@ -73,12 +75,11 @@ fun PantallaResumenPepido(
                     .height(200.dp),
             ){
                 val imageOption = when(pedidoPrueba.tipoPizza) {
-                    "Romana" -> R.drawable.romana
-                    "Barbacoa" -> R.drawable.barbacoa
-                    "Margarita" -> R.drawable.margarita
-                    "Agua" -> R.drawable.person
-                    "Refresco" -> R.drawable.person
-                    "Sin bebida" -> R.drawable.person
+                    stringResource(R.string.romana) -> R.drawable.romana
+                    stringResource(R.string.barbacoa) -> R.drawable.barbacoa
+                    stringResource(R.string.margarita) -> R.drawable.margarita
+                    stringResource(R.string.agua) -> R.drawable.agua
+                    stringResource(R.string.cola) -> R.drawable.cola
                     else -> R.drawable.person
                 }
                 Image(
@@ -100,17 +101,17 @@ fun PantallaResumenPepido(
                 verticalArrangement = Arrangement.Center
             ){
                 Text(
-                    text = "Cantidad: " + pedidoPrueba.cantidadPizza
+                    text = stringResource(R.string.cantidad) + ": " + pedidoPrueba.cantidadPizza
                 )
                 Text(
-                    text = "Tamaño: " + pedidoPrueba.tamanoPizza
+                    text = stringResource(R.string.tama_o) + ": " + pedidoPrueba.tamanoPizza
                 )
             }
         }
 
-        if (pedidoPrueba.tipoBebida != "Sin bebida"){
+        if (pedidoPrueba.tipoBebida != stringResource(R.string.sin_bebida)){
             Text(
-                text = "Bebida: " + getPrecio(pedidoPrueba.cantidadBebida, pedidoPrueba.tipoBebida),
+                text = stringResource(R.string.bebida) + ": " + getPrecio(pedidoPrueba.cantidadBebida, pedidoPrueba.tipoBebida),
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
 
@@ -122,8 +123,8 @@ fun PantallaResumenPepido(
                         .height(200.dp),
                 ){
                     val imageOption = when(pedidoPrueba.tipoBebida) {
-                        "Agua" -> R.drawable.agua
-                        "Cola" -> R.drawable.cola
+                        stringResource(R.string.agua) -> R.drawable.agua
+                        stringResource(R.string.cola) -> R.drawable.cola
                         else -> R.drawable.person
                     }
                     Image(
@@ -146,7 +147,7 @@ fun PantallaResumenPepido(
                     verticalArrangement = Arrangement.Center
                 ){
                     Text(
-                        text = "Cantidad: " + pedidoPrueba.cantidadBebida
+                        text = stringResource(R.string.cantidad) + ": " + pedidoPrueba.cantidadBebida
                     )
                 }
             }
@@ -157,27 +158,50 @@ fun PantallaResumenPepido(
 
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "Precio Total: " + pedidoPrueba.precioTotal,
+            text = stringResource(R.string.precio_total) + pedidoPrueba.precioTotal,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp
         )
 
+        Row (
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(
+                16.dp,
+                Alignment.CenterHorizontally
+            ),
 
+            ){
+            Button(
+                onClick = {}
+            ) {
+                Text(
+                    text = stringResource(R.string.cancelar)
+                )
+            }
+            Button(
+                onClick = {}
+            ) {
+                Text(
+                    text = "Pagar"
+                )
+            }
+        }
 
 
     }
 }
 
+@Composable
 fun getPrecio(cantidad: Int, tamanoPizzaTipoBebida: String): Double{
     var precioPizzaBebida: Double = 0.0
     when(tamanoPizzaTipoBebida){
-        "Pequeña" -> precioPizzaBebida = 4.95
-        "Mediana" -> precioPizzaBebida = 6.95
-        "Grande" -> precioPizzaBebida = 10.95
-        "Agua" -> precioPizzaBebida = 2.0
-        "Cola" -> precioPizzaBebida = 2.5
-        "Sin bebida" -> precioPizzaBebida = 0.0
+        stringResource(R.string.peque_a) -> precioPizzaBebida = 4.95
+        stringResource(R.string.mediana) -> precioPizzaBebida = 6.95
+        stringResource(R.string.grande) -> precioPizzaBebida = 10.95
+        stringResource(R.string.agua) -> precioPizzaBebida = 2.0
+        stringResource(R.string.cola) -> precioPizzaBebida = 2.5
+        stringResource(R.string.sin_bebida) -> precioPizzaBebida = 0.0
     }
 
 

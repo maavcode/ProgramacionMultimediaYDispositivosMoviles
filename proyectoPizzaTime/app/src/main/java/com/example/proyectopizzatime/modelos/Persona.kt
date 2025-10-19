@@ -10,4 +10,5 @@ data class Persona (
     val correo: String,
     val telefono: String,
     @DrawableRes val imageResourceId: Int,
+    val listaPedidos: List<Pedido>
 )
