@@ -6,11 +6,11 @@
     <string name="realizar_pedido">Realizar pedido</string>
     <string name="listar_pedidos">Listar pedidos</string>
     <string name="lista_de_pedidos">Lista de Pedidos</string>
-    <string name="pedido">"Pedido: "</string>
+    <string name="pedido">"Pedido "</string>
     <string name="resumen_del_pedido">Resumen del pedido</string>
     <string name="realizar_un_pedido">Realizar un pedido</string>
-    <string name="total">"TOTAL: "</string>
-    <string name="pizza">Pizza</string>
+    <string name="total" translatable="false">TOTAL</string>
+    <string name="pizza" translatable="false">Pizza</string>
     <string name="romana">Romana</string>
     <string name="barbacoa">Barbacoa</string>
     <string name="margarita">Margarita</string>
@@ -22,7 +22,7 @@
     <string name="grande">Grande</string>
     <string name="bebida">Bebida</string>
     <string name="agua">Agua</string>
-    <string name="cola">Cola</string>
+    <string name="cola" translatable="false">Cola</string>
     <string name="sin_bebida">Sin bebida</string>
     <string name="con_champi_ones">Con champiñones</string>
     <string name="sin_champi_ones">Sin champiñones</string>
@@ -33,20 +33,22 @@
     <string name="sin_pi_a">Sin piña</string>
     <string name="vegana">Vegana</string>
     <string name="tama_o">Tamaño</string>
-    <string name="precio_total">"Precio Total: "</string>
+    <string name="precio_total">Precio Total</string>
     <string name="cancelar">Cancelar</string>
     <string name="aceptar">Aceptar</string>
-    <string name="visa">VISA</string>
-    <string name="mastercard">MasterCard</string>
-    <string name="euro_6000">Euro 6000</string>
+    <string name="visa" translatable="false">VISA</string>
+    <string name="mastercard" translatable="false">MasterCard</string>
+    <string name="euro_6000" translatable="false">Euro 6000</string>
     <string name="formulario_de_pago">Formulario de pago</string>
     <string name="metodo_de_pago">Metodo de pago</string>
-    <string name="numero_de_tarjera">Numero de tarjera</string>
+    <string name="numero_de_tarjera">Numero de tarjeta</string>
     <string name="fecha_caducidad_mm_aa">Fecha caducidad (MM/AA)</string>
-    <string name="cvv">CVV</string>
+    <string name="cvv" translatable="false">CVV</string>
     <string name="importe_total">Importe total</string>
     <string name="resumen_del_pago">Resumen del pago</string>
     <string name="enviar">Enviar</string>
+    <string name="_12_28">12/28</string>
+    <string name="pagar">Pagar</string>
 
 
 </resources>

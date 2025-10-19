@@ -1,11 +1,14 @@
 package com.example.proyectopizzatime.datos
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import com.example.proyectopizzatime.R
 import com.example.proyectopizzatime.modelos.Pago
 import com.example.proyectopizzatime.modelos.Pedido
 import com.example.proyectopizzatime.ui.theme.Persona
 
 class Datos{
+    @Composable
     fun cargarPersonas(): List<Persona> {
         return listOf(
             Persona(
@@ -26,94 +29,96 @@ class Datos{
         )
     }
 
+    @Composable
     fun cargarPedidos(): List<Pedido> {
         return listOf(
             Pedido(
                 idPedido = 0,
-                tipoPizza = "Margarita",
-                tamanoPizza = "Mediana",
+                tipoPizza = stringResource(R.string.margarita),
+                tamanoPizza = stringResource(R.string.mediana),
                 cantidadPizza = 2,
-                tipoBebida = "Agua",
+                tipoBebida = stringResource(R.string.agua),
                 cantidadBebida = 1,
                 precioTotal = 15.9,
                 pago = cargarPagos().get(0)
             ),
             Pedido(
-                idPedido = 1,
-                tipoPizza = "Margarita",
-                tamanoPizza = "Mediana",
+                idPedido = 0,
+                tipoPizza = stringResource(R.string.margarita),
+                tamanoPizza = stringResource(R.string.mediana),
                 cantidadPizza = 2,
-                tipoBebida = "Agua",
+                tipoBebida = stringResource(R.string.agua),
                 cantidadBebida = 1,
                 precioTotal = 15.9,
                 pago = cargarPagos().get(0)
             ),
             Pedido(
-                idPedido = 2,
-                tipoPizza = "Margarita",
-                tamanoPizza = "Mediana",
+                idPedido = 0,
+                tipoPizza = stringResource(R.string.margarita),
+                tamanoPizza = stringResource(R.string.mediana),
                 cantidadPizza = 2,
-                tipoBebida = "Agua",
+                tipoBebida = stringResource(R.string.agua),
                 cantidadBebida = 1,
-                precioTotal = 24.58,
+                precioTotal = 15.9,
                 pago = cargarPagos().get(0)
             ),
             Pedido(
-                idPedido = 3,
-                tipoPizza = "Margarita",
-                tamanoPizza = "Mediana",
+                idPedido = 0,
+                tipoPizza = stringResource(R.string.margarita),
+                tamanoPizza = stringResource(R.string.mediana),
                 cantidadPizza = 2,
-                tipoBebida = "Agua",
+                tipoBebida = stringResource(R.string.agua),
                 cantidadBebida = 1,
-                precioTotal = 24.58,
+                precioTotal = 15.9,
                 pago = cargarPagos().get(0)
             ),
             Pedido(
-                idPedido = 4,
-                tipoPizza = "Margarita",
-                tamanoPizza = "Mediana",
+                idPedido = 0,
+                tipoPizza = stringResource(R.string.margarita),
+                tamanoPizza = stringResource(R.string.mediana),
                 cantidadPizza = 2,
-                tipoBebida = "Agua",
+                tipoBebida = stringResource(R.string.agua),
                 cantidadBebida = 1,
-                precioTotal = 24.58,
+                precioTotal = 15.9,
                 pago = cargarPagos().get(0)
             ),
             Pedido(
-                idPedido = 5,
-                tipoPizza = "Margarita",
-                tamanoPizza = "Mediana",
+                idPedido = 0,
+                tipoPizza = stringResource(R.string.margarita),
+                tamanoPizza = stringResource(R.string.mediana),
                 cantidadPizza = 2,
-                tipoBebida = "Agua",
+                tipoBebida = stringResource(R.string.agua),
                 cantidadBebida = 1,
-                precioTotal = 24.58,
+                precioTotal = 15.9,
                 pago = cargarPagos().get(0)
             ),
             Pedido(
-                idPedido = 6,
-                tipoPizza = "Margarita",
-                tamanoPizza = "Mediana",
+                idPedido = 0,
+                tipoPizza = stringResource(R.string.margarita),
+                tamanoPizza = stringResource(R.string.mediana),
                 cantidadPizza = 2,
-                tipoBebida = "Agua",
+                tipoBebida = stringResource(R.string.agua),
                 cantidadBebida = 1,
-                precioTotal = 24.58,
+                precioTotal = 15.9,
                 pago = cargarPagos().get(0)
             ),
         )
     }
 
+    @Composable
     fun cargarPagos(): List<Pago>{
         return listOf(
             Pago(
                 idPago = 0,
-                opcionPago = "Tarjeta",
-                fechaCaducidad = "12/28",
+                opcionPago = stringResource(R.string.visa),
+                fechaCaducidad = stringResource(R.string._12_28),
                 cvv = 123,
                 importe = 15.90
             ),
             Pago(
                 idPago = 1,
-                opcionPago = "Tarjeta",
-                fechaCaducidad = "12/28",
+                opcionPago = stringResource(R.string.visa),
+                fechaCaducidad = stringResource(R.string._12_28),
                 cvv = 123,
                 importe = 15.90
             )

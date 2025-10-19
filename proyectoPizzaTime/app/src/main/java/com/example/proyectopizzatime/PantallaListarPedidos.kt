@@ -108,7 +108,7 @@ fun TarjetaPedido (
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ){
             Text(
-                text = stringResource(R.string.pedido) + pedido.tipoPizza + " + " + pedido.tipoBebida
+                text = stringResource(R.string.pedido) + ": " + pedido.tipoPizza + " + " + pedido.tipoBebida
             )
             Button(
                 onClick = {}

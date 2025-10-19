@@ -160,12 +160,12 @@ fun PantallaResumenPago(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Método de pago" + ": " + pago.opcionPago,
+                    text = stringResource(R.string.metodo_de_pago) + ": " + pago.opcionPago,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Importe total" + ": " + pago.importe + "€",
+                    text = stringResource(R.string.importe_total) + ": " + pago.importe + "€",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )

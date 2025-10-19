@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">proyectoPizzaTime</string>
+    <string name="bienvenido_a_pizzatime">Welcome to PizzaTime</string>
+    <string name="persona">person</string>
+    <string name="que_vas_a_hacer">What are you going to do?</string>
+    <string name="realizar_pedido">Take order</string>
+    <string name="listar_pedidos">List orders</string>
+    <string name="lista_de_pedidos">Order list</string>
+    <string name="pedido">Order</string>
+    <string name="resumen_del_pedido">Order sumary</string>
+    <string name="realizar_un_pedido">Take an order</string>
+    <string name="romana">Roman</string>
+    <string name="barbacoa">Barbacue</string>
+    <string name="margarita">Margherita</string>
+    <string name="opciones_de_pizza">Pizza options</string>
+    <string name="cantidad">Amount</string>
+    <string name="tama_o_de_la_pizza">Pizza size</string>
+    <string name="peque_a">Small</string>
+    <string name="mediana">Medium</string>
+    <string name="grande">Big</string>
+    <string name="bebida">Drink</string>
+    <string name="agua">Water</string>
+    <string name="sin_bebida">No drink</string>
+    <string name="con_champi_ones">With mushrooms</string>
+    <string name="sin_champi_ones">No mushrooms</string>
+    <string name="carne_de_cerdo">Pork</string>
+    <string name="carne_de_pollo">Chicken meat</string>
+    <string name="carne_de_ternera">"Beef "</string>
+    <string name="con_pi_a">With pineapple</string>
+    <string name="sin_pi_a">No pineapple</string>
+    <string name="vegana">Vegan</string>
+    <string name="tama_o">Size</string>
+    <string name="precio_total">Total price</string>
+    <string name="cancelar">Cancel</string>
+    <string name="aceptar">Accept</string>
+    <string name="formulario_de_pago">Payment form</string>
+    <string name="metodo_de_pago">Payment method</string>
+    <string name="numero_de_tarjera">Card number</string>
+    <string name="fecha_caducidad_mm_aa">Expiration date (MM/AA)</string>
+    <string name="importe_total">Total import</string>
+    <string name="resumen_del_pago">Payment sumary</string>
+    <string name="enviar">Send</string>
+    <string name="_12_28">12/28</string>
+    <string name="pagar">Pay</string>
+</resources>

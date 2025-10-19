@@ -34,7 +34,7 @@ import com.example.compose.AppTheme
 import com.example.proyectopizzatime.datos.Datos
 
 @Composable
-fun PantallaResumenPepido(
+fun PantallaResumenPedido(
     modifier: Modifier = Modifier
 ){
     val pedidoPrueba = Datos().cargarPersonas().get(0).listaPedidos.get(0)
@@ -43,7 +43,7 @@ fun PantallaResumenPepido(
         modifier = modifier
     ){
         Text(
-            text = "Resumen del pedido",
+            text = stringResource(R.string.resumen_del_pedido),
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start,
@@ -57,14 +57,14 @@ fun PantallaResumenPepido(
         )
 
         Text(
-            text = "Pedido: " + pedidoPrueba.tipoPizza + " + " + pedidoPrueba.tipoBebida,
+            text = stringResource(R.string.pedido) + ": " + pedidoPrueba.tipoPizza + " + " + pedidoPrueba.tipoBebida,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp
         )
 
 
         Text(
-            text = "Pizza: " + getPrecio(pedidoPrueba.cantidadPizza, pedidoPrueba.tamanoPizza),
+            text = stringResource(R.string.pizza) + ": " + getPrecio(pedidoPrueba.cantidadPizza, pedidoPrueba.tamanoPizza),
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp
         )
@@ -158,7 +158,7 @@ fun PantallaResumenPepido(
 
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.precio_total) + pedidoPrueba.precioTotal,
+            text = stringResource(R.string.precio_total) + ": " + pedidoPrueba.precioTotal,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp
@@ -183,7 +183,7 @@ fun PantallaResumenPepido(
                 onClick = {}
             ) {
                 Text(
-                    text = "Pagar"
+                    text = stringResource(R.string.pagar)
                 )
             }
         }
@@ -213,6 +213,6 @@ fun getPrecio(cantidad: Int, tamanoPizzaTipoBebida: String): Double{
 @Composable
 fun PantallaResumenPedidoPreview() {
     AppTheme {
-        PantallaResumenPepido()
+        PantallaResumenPedido()
     }
 }
