@@ -34,7 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.example.compose.AppTheme
+import com.example.proyectopizzatime.ui.theme.AppTheme
 
 @Composable
 fun PantallaRealizarPedido(

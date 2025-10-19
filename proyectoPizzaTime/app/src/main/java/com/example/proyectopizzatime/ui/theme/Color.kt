@@ -1,4 +1,4 @@
-package com.example.compose
+package com.example.proyectopizzatime.ui.theme
 import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF6D5E0F)
