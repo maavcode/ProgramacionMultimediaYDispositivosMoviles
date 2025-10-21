@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">examenMarioAguilarAvila</string>
+    <string name="examen_2_dam">Examen 2ºDAM</string>
+    <string name="total">Total</string>
+    <string name="total_alumnos">Total Alumnos</string>
+    <string name="total_profesores">Total Profesores</string>
+    <string name="alumnado">Alumnado</string>
+    <string name="alumno">Alumno</string>
+    <string name="profesorado">Profesorado</string>
+    <string name="profesor">Profesor</string>
 </resources>
