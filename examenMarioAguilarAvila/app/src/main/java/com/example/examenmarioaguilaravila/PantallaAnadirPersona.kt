@@ -52,7 +52,7 @@ fun PantallaAnadirPersona(
 
     // Da error y no se porque
     if (rol == "Alumno" && nombre.isNotEmpty() && nia.length==5){
-        val ultimaLetra = nombre.get(nombre.length)
+        val ultimaLetra = nombre.get(nombre.length - 1)
         val niaNumeros = nia[0].toString() + nia[1].toString() + nia[2].toString()
         codigoIdentificacion = ultimaLetra + niaNumeros
     } else if (rol == "Profesor" && nombre.isNotEmpty()){
