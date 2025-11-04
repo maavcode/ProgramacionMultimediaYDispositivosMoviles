@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">proyectoPizzaTimePart2</string>
+    <string name="inicio">Inicio</string>
+    <string name="listar_pedidos">Listar pedidos</string>
+    <string name="realizar_un_pedido">Realizar un pedido</string>
+    <string name="resumen_del_pedido">Resumen del pedido</string>
+    <string name="formulario_del_pago">Formulario del pago</string>
+    <string name="resumen_del_pago">Resumen del pago</string>
+    <string name="atras">Atras</string>
+    <string name="siguiente">Siguiente</string>
+</resources>
