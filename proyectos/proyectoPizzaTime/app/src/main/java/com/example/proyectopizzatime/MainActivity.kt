@@ -31,20 +31,20 @@ class MainActivity : ComponentActivity() {
                             .statusBarsPadding()
                             .padding(start = 20.dp, end = 20.dp)
                     )*/
-                    PantallaListarPedidos(
-                        modifier = Modifier
-                            .padding(innerPadding)
-                            .fillMaxSize()
-                            .statusBarsPadding()
-                            .padding(start = 20.dp, end = 20.dp)
-                    )
-                    /*PantallaRealizarPedido(
+                    /*PantallaListarPedidos(
                         modifier = Modifier
                             .padding(innerPadding)
                             .fillMaxSize()
                             .statusBarsPadding()
                             .padding(start = 20.dp, end = 20.dp)
                     )*/
+                    PantallaRealizarPedido(
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .fillMaxSize()
+                            .statusBarsPadding()
+                            .padding(start = 20.dp, end = 20.dp)
+                    )
                     /*PantallaResumenPedido(
                         modifier = Modifier
                             .padding(innerPadding)

@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -43,13 +44,13 @@ fun PantallaRealizarPedido(
     var tipoPizza by remember { mutableStateOf("") }
     var tipoBebida by remember { mutableStateOf("") }
     var tamanoPizza by remember { mutableStateOf("") }
-    var cantidadPizza by remember { mutableStateOf(0) }
-    var cantidadBebida by remember { mutableStateOf(0) }
-    LazyColumn (
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+    var cantidadPizza by remember { mutableStateOf(1) }
+    var cantidadBebida by remember { mutableStateOf(1) }
+    Column (
+        verticalArrangement = Arrangement.spacedBy(10.dp),
         modifier = modifier
     ){
-        item {
+
             Text(
                 text = stringResource(R.string.realizar_un_pedido),
                 fontSize = 28.sp,
@@ -63,9 +64,9 @@ fun PantallaRealizarPedido(
                 color = Color.Gray,
                 thickness = 1.dp
             )
-        }
 
-        item {
+
+
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -73,13 +74,13 @@ fun PantallaRealizarPedido(
                 textAlign = TextAlign.Center,
                 fontSize = 24.sp
             )
-        }
 
-        item {
+
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    //.height(IntrinsicSize.Min) // para que la altura se ajuste al contenido
+                    .height(IntrinsicSize.Min) // para que la altura se ajuste al contenido
             ) {
 
 
@@ -101,7 +102,7 @@ fun PantallaRealizarPedido(
                     radioOptions.forEach { radioOption ->
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(vertical = 4.dp)
+                            modifier = Modifier
                         ) {
                             RadioButton(
                                 selected = (radioOption == tipoPizza),
@@ -113,8 +114,6 @@ fun PantallaRealizarPedido(
                             )
                         }
                     }
-
-                    // Imagen según tipoPizza
 
 
 
@@ -144,33 +143,11 @@ fun PantallaRealizarPedido(
             }
             if (tipoPizza.isNotEmpty()){
                 Row (
-                    modifier = Modifier.height(200.dp)
+                    modifier = Modifier
                 ){
-                    val imageOption = when(tipoPizza) {
-                        stringResource(R.string.romana) -> R.drawable.romana
-                        stringResource(R.string.barbacoa) -> R.drawable.barbacoa
-                        stringResource(R.string.margarita) -> R.drawable.margarita
-                        else -> R.drawable.person
-                    }
-
                         Column (
                             modifier = Modifier
-                                .weight(1f)
-                                .fillMaxHeight(),
-                        ){
-                            Image(
-                                painter = painterResource(imageOption),
-                                contentDescription = "",
-                                modifier = Modifier
-                                    .padding(10.dp)
-                                    .fillMaxSize(),
-                                contentScale = ContentScale.Crop
-                            )
-                        }
-                        Column (
-                            modifier = Modifier
-                                .weight(1f)
-                                .fillMaxHeight(),
+                                .fillMaxWidth(),
                             verticalArrangement = Arrangement.Center,
                             horizontalAlignment = Alignment.CenterHorizontally
 
@@ -214,9 +191,9 @@ fun PantallaRealizarPedido(
             )
 
 
-        }
+
         if (tipoPizza.isNotEmpty()){
-            item {
+
                 Text(
                     text = stringResource(R.string.tama_o_de_la_pizza),
                     fontSize = 26.sp,
@@ -248,10 +225,10 @@ fun PantallaRealizarPedido(
                     color = Color.Gray,
                     thickness = 1.dp
                 )
-            }
+
         }
 
-        item {
+
 
             Text(
                 text = stringResource(R.string.bebida),
@@ -285,31 +262,11 @@ fun PantallaRealizarPedido(
             }
             if (tipoBebida.isNotEmpty() && tipoBebida != stringResource(R.string.sin_bebida)) {
                 Row (
-                    modifier = Modifier.height(200.dp)
+                    modifier = Modifier
                 ){
                     Column (
                         modifier = Modifier
-                            .weight(1f)
-                            .fillMaxHeight(),
-                    ){
-                        val imageOption = when(tipoBebida) {
-                            stringResource(R.string.agua) -> R.drawable.agua
-                            stringResource(R.string.cola) -> R.drawable.cola
-                            else -> R.drawable.person
-                        }
-                        Image(
-                            painter = painterResource(imageOption),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .padding(10.dp)
-                                .fillMaxSize(),
-                            contentScale = ContentScale.Crop
-                        )
-                    }
-                    Column (
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxHeight(),
+                            .fillMaxWidth(),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
 
@@ -347,9 +304,9 @@ fun PantallaRealizarPedido(
 
 
 
-        }
 
-        item {
+
+
             Column (
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -366,7 +323,7 @@ fun PantallaRealizarPedido(
                 }
             }
 
-        }
+
     }
 }
 
@@ -419,7 +376,7 @@ fun OpcionesPizza(
     var opcionPizza by remember { mutableStateOf("") }
 
         Column (
-
+            modifier = Modifier
         ){
 
 
