@@ -15,7 +15,7 @@ fun PantallaListarPedidos(
 ){
     Column {
         Text(
-            text = "Inicio"
+            text = "Listar Pedidos"
         )
         BotonSiguiente(onClick = {onBotonSiguientePulsado()})
     }

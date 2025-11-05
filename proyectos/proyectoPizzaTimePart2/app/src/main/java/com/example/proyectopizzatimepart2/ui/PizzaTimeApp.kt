@@ -5,7 +5,9 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material.icons.
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -28,7 +30,7 @@ import com.example.proyectopizzatimepart2.R
 // Enum para guardar las pantallas existentes y sus titulos
 enum class Pantallas(@StringRes val titulo: Int) { // Cambiar a inr cuando R.string.etc y poner @StringRes
     PantallaInicial (titulo = R.string.inicio),
-    PantallaListarPedidos (titulo = R.string.listar_pedidos),
+    PantallaListaPedidos (titulo = R.string.lista_de_pedidos),
     PantallaRealizarPedido (titulo = R.string.realizar_un_pedido),
     PantallaResumenPedido (titulo = R.string.resumen_del_pedido),
     PantallaFormularioPago (titulo = R.string.formulario_del_pago),
@@ -69,16 +71,16 @@ fun PizzaTimeApp(
             composable(route = Pantallas.PantallaInicial.name) {
                 PantallaInicial(
                     onBotonSiguientePulsado = {
-                        navController.navigate(Pantallas.PantallaInicial.name)
+                        navController.navigate(Pantallas.PantallaListaPedidos.name)
                     },
                     modifier = Modifier
                         .fillMaxSize()
                 )
             }
-            composable(route = Pantallas.PantallaListarPedidos.name) {
+            composable(route = Pantallas.PantallaListaPedidos.name) {
                 PantallaListarPedidos(
                     onBotonSiguientePulsado = {
-                        navController.navigate(Pantallas.PantallaListarPedidos.name)
+                        navController.navigate(Pantallas.PantallaRealizarPedido.name)
                     },
                     modifier = Modifier
                         .fillMaxSize()
@@ -87,7 +89,7 @@ fun PizzaTimeApp(
             composable(route = Pantallas.PantallaRealizarPedido.name) {
                 PantallaRealizarPedido(
                     onBotonSiguientePulsado = {
-                        navController.navigate(Pantallas.PantallaRealizarPedido.name)
+                        navController.navigate(Pantallas.PantallaResumenPedido.name)
                     },
                     modifier = Modifier
                         .fillMaxSize()
@@ -96,7 +98,7 @@ fun PizzaTimeApp(
             composable(route = Pantallas.PantallaResumenPedido.name) {
                 PantallaResumenPedido(
                     onBotonSiguientePulsado = {
-                        navController.navigate(Pantallas.PantallaResumenPedido.name)
+                        navController.navigate(Pantallas.PantallaFormularioPago.name)
                     },
                     modifier = Modifier
                         .fillMaxSize()
@@ -105,7 +107,7 @@ fun PizzaTimeApp(
             composable(route = Pantallas.PantallaFormularioPago.name) {
                 PantallaFormularioPago(
                     onBotonSiguientePulsado = {
-                        navController.navigate(Pantallas.PantallaFormularioPago.name)
+                        navController.navigate(Pantallas.PantallaResumenPago.name)
                     },
                     modifier = Modifier
                         .fillMaxSize()
@@ -114,7 +116,7 @@ fun PizzaTimeApp(
             composable(route = Pantallas.PantallaResumenPago.name) {
                 PantallaResumenPago(
                     onBotonSiguientePulsado = {
-                        navController.navigate(Pantallas.PantallaResumenPago.name)
+                        navController.navigate(Pantallas.PantallaInicial.name)
                     },
                     modifier = Modifier
                         .fillMaxSize()
@@ -146,8 +148,8 @@ fun AppTopBar(
             if(puedeNavegarAtras) {
                 IconButton(onClick = onNavegarAtras) {
                     Icon(
-                        imageVector = Icons,
-                        contentDescription = stringResource(id = R.string.atras)
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = stringResource(id = R.string.atras) // Añadir que cancele el objeto en creacion
                     )
                 }
             }

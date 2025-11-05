@@ -1,10 +1,10 @@
-package com.example.proyectopizzatime.ui.theme
+package com.example.proyectopizzatimepart2.modelo
 
 import androidx.annotation.DrawableRes
-import com.example.proyectopizzatime.modelos.Pedido
+import com.example.proyectopizzatimepart2.modelo.Pedido
 
 data class Persona (
-    val personaId: Int,
+    val idPersona: Int,
     val nombre: String,
     val correo: String,
     val telefono: String,
