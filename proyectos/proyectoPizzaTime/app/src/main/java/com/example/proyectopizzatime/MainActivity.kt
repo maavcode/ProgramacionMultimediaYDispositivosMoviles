@@ -38,13 +38,13 @@ class MainActivity : ComponentActivity() {
                             .statusBarsPadding()
                             .padding(start = 20.dp, end = 20.dp)
                     )*/
-                    PantallaRealizarPedido(
+                    /*PantallaRealizarPedido(
                         modifier = Modifier
                             .padding(innerPadding)
                             .fillMaxSize()
                             .statusBarsPadding()
                             .padding(start = 20.dp, end = 20.dp)
-                    )
+                    )*/
                     /*PantallaResumenPedido(
                         modifier = Modifier
                             .padding(innerPadding)
@@ -52,13 +52,13 @@ class MainActivity : ComponentActivity() {
                             .statusBarsPadding()
                             .padding(start = 20.dp, end = 20.dp)
                     )*/
-                    /*PantallaFormularioPago(
+                    PantallaFormularioPago(
                         modifier = Modifier
                             .padding(innerPadding)
                             .fillMaxSize()
                             .statusBarsPadding()
                             .padding(start = 20.dp, end = 20.dp)
-                    )*/
+                    )
                     /*PantallaResumenPago(
                         modifier = Modifier
                             .padding(innerPadding)

@@ -82,16 +82,16 @@ class Datos {
     @Composable
     fun cargarPagos(): List<Pago> {
         return listOf(
-            Pago(0, stringResource(R.string.visa), "01/26", 123, "4111111111111111", 12.95),
-            Pago(1, stringResource(R.string.visa), "02/26", 123, "4111111111111111", 18.90),
-            Pago(2, stringResource(R.string.visa), "03/26", 123, "4111111111111111", 4.95),
-            Pago(3, stringResource(R.string.visa), "04/26", 123, "4111111111111111", 17.85),
-            Pago(4, stringResource(R.string.visa), "05/26", 123, "4111111111111111", 13.45),
-            Pago(5, stringResource(R.string.mastercard), "06/27", 456, "5500000000000004", 13.90),
-            Pago(6, stringResource(R.string.mastercard), "07/27", 456, "5500000000000004", 12.95),
-            Pago(7, stringResource(R.string.mastercard), "08/27", 456, "5500000000000004", 14.90),
-            Pago(8, stringResource(R.string.mastercard), "09/27", 456, "5500000000000004", 12.95),
-            Pago(9, stringResource(R.string.mastercard), "10/27", 456, "5500000000000004", 6.95)
+            Pago(0, stringResource(R.string.visa), "01/26", "123", "4111111111111111", 12.95),
+            Pago(1, stringResource(R.string.visa), "02/26", "123", "4111111111111111", 18.90),
+            Pago(2, stringResource(R.string.visa), "03/26", "123", "4111111111111111", 4.95),
+            Pago(3, stringResource(R.string.visa), "04/26", "123", "4111111111111111", 17.85),
+            Pago(4, stringResource(R.string.visa), "05/26", "123", "4111111111111111", 13.45),
+            Pago(5, stringResource(R.string.mastercard), "06/27", "456", "5500000000000004", 13.90),
+            Pago(6, stringResource(R.string.mastercard), "07/27", "456", "5500000000000004", 12.95),
+            Pago(7, stringResource(R.string.mastercard), "08/27", "456", "5500000000000004", 14.90),
+            Pago(8, stringResource(R.string.mastercard), "09/27", "456", "5500000000000004", 12.95),
+            Pago(9, stringResource(R.string.mastercard), "10/27", "456", "5500000000000004", 6.95)
         )
 
     }
