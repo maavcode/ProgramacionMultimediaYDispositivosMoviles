@@ -54,4 +54,6 @@
     <string name="importe_total">Importe total</string>
     <string name="enviar">Enviar</string>
     <string name="pagar">Pagar</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="atras">Atras</string>
 </resources>
