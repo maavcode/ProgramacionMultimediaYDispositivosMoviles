@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PizzaTime Project Part 2</string>
+
+    <!-- Screens -->
+    <string name="inicio">Home</string>
+    <string name="lista_de_pedidos">Order List</string>
+    <string name="realizar_un_pedido">Place an Order</string>
+    <string name="resumen_del_pedido">Order Summary</string>
+    <string name="formulario_del_pago">Payment Form</string>
+    <string name="resumen_del_pago">Payment Summary</string>
+
+    <!-- Home -->
+    <string name="bienvenido_a_pizzatime">Welcome to PizzaTime</string>
+    <string name="persona">person</string>
+    <string name="que_vas_a_hacer">What are you going to do?</string>
+    <string name="realizar_pedido">Place Order</string>
+    <string name="listar_pedidos">View Orders</string>
+
+    <!-- Order list -->
+    <string name="pedido">Order</string>
+    <string name="total">TOTAL</string>
+    <string name="pizza">Pizza</string>
+    <string name="romana">Roman</string>
+    <string name="barbacoa">Barbecue</string>
+    <string name="margarita">Margherita</string>
+    <string name="opciones_de_pizza">Pizza Options</string>
+    <string name="cantidad">Quantity</string>
+    <string name="tama_o_de_la_pizza">Pizza Size</string>
+    <string name="peque_a">Small</string>
+    <string name="mediana">Medium</string>
+    <string name="grande">Large</string>
+    <string name="bebida">Drink</string>
+    <string name="agua">Water</string>
+    <string name="cola">Cola</string>
+    <string name="sin_bebida">No drink</string>
+    <string name="con_champi_ones">With mushrooms</string>
+    <string name="sin_champi_ones">Without mushrooms</string>
+    <string name="carne_de_cerdo">Pork</string>
+    <string name="carne_de_pollo">Chicken</string>
+    <string name="carne_de_ternera">Beef</string>
+    <string name="con_pi_a">With pineapple</string>
+    <string name="sin_pi_a">Without pineapple</string>
+    <string name="vegana">Vegan</string>
+    <string name="no_vegana">Non-vegan</string>
+    <string name="tama_o">Size</string>
+    <string name="precio_total">Total Price</string>
+    <string name="cancelar">Cancel</string>
+    <string name="aceptar">Accept</string>
+    <string name="visa">VISA</string>
+    <string name="mastercard">MasterCard</string>
+    <string name="euro_6000">Euro 6000</string>
+    <string name="metodo_de_pago">Payment Method</string>
+    <string name="numero_de_tarjera">Card Number</string>
+    <string name="fecha_caducidad_mm_aa">Expiration Date (MM/YY)</string>
+    <string name="cvv">CVV</string>
+    <string name="importe_total">Total Amount</string>
+    <string name="enviar">Send</string>
+    <string name="pagar">Pay</string>
+    <string name="siguiente">Next</string>
+    <string name="atras">Back</string>
+</resources>

@@ -1,132 +1,99 @@
 package com.example.proyectopizzatimepart2.ui.viewmodel
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
-import com.example.proyectopizzatimepart2.R
 import com.example.proyectopizzatimepart2.datos.Datos
-import com.example.proyectopizzatimepart2.modelo.Pizza
-import com.example.proyectopizzatimepart2.modelo.RealizarPedidoUIState
+import com.example.proyectopizzatimepart2.modelo.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlin.Int
-import kotlin.String
 
-class RealizarPedidoViewModel: ViewModel() {
+class RealizarPedidoViewModel : ViewModel() {
+
+    // SOLUCIÓN: Inicializar correctamente o usar valores por defecto
     private val _uiState = MutableStateFlow(RealizarPedidoUIState())
+    private val _listaPedidos = mutableStateOf(Datos().cargarPedidos())
+    val listaPedidos: List<Pedido> get() = _listaPedidos.value
 
+    // Agregar un pedido
+    fun agregarPedido(pedido: Pedido) {
+        _listaPedidos.value = _listaPedidos.value + pedido
+    }
     val uiState: StateFlow<RealizarPedidoUIState> = _uiState.asStateFlow()
 
-    var respuestaCantidadPizza by mutableIntStateOf(1)
-        private set
+    // Funciones para actualizar estados
+    fun actualizarPizza(pizzaNueva: Pizza) {
+        _uiState.update { estadoActual ->
+            estadoActual.copy(
+                pizza = pizzaNueva
+            )
+        }
+        calcularTotal() // Añadir esto para recalcular
+    }
 
-    var respuestaCantidadBebida by mutableIntStateOf(1)
-        private set
+    fun actualizarBebida(bebidaNueva: TipoBebida) {
+        _uiState.update { estadoActual ->
+            estadoActual.copy(
+                bebida = bebidaNueva
+            )
+        }
+        calcularTotal()
+    }
 
-    /*
-
-    var respuestaTipoPizza by mutableStateOf("")
-        private set
-
-    var respuestaBebida by mutableStateOf("")
-        private set
-
-    var respuestaSubtipoPizza by mutableStateOf("")
-        private set
-
-     */
-
-    var respuestaPizza by mutableStateOf(Pizza())
-        private set
-
-    var respuestaBebida by mutableStateOf("")
-        private set
-
-
-    @Composable
     fun actualizarCantidadPizza(cantidadNueva: Int) {
-        respuestaCantidadPizza = cantidadNueva
-
         _uiState.update { estadoActual ->
             estadoActual.copy(
-                cantidadPizza = respuestaCantidadPizza
+                cantidadPizza = cantidadNueva // No actualiza el subtipo de la pizza barbacoa y no se porque
             )
         }
-
         calcularTotal()
     }
 
-    @Composable
     fun actualizarCantidadBebida(cantidadNueva: Int) {
-        respuestaCantidadBebida = cantidadNueva
-
         _uiState.update { estadoActual ->
             estadoActual.copy(
-                cantidadBebida = respuestaCantidadBebida
+                cantidadBebida = cantidadNueva
             )
         }
-
         calcularTotal()
     }
 
-    fun actualizarPizza (pizzaNueva: Pizza) {
-        respuestaPizza = pizzaNueva
-
+    fun actualizarPago(pagoNuevo: Pago) {
         _uiState.update { estadoActual ->
-            respuestaPizza.copy(
-                idPizza = pizzaNueva.idPizza,
-                tipoPizza = pizzaNueva.tipoPizza,
-                subTipoPizza = pizzaNueva.subTipoPizza,
-                tamanoPizza = pizzaNueva.tamanoPizza
-            )
-
             estadoActual.copy(
-                pizza = respuestaPizza
+                pago = pagoNuevo
             )
         }
     }
 
-    fun actualizarBebida (bebidaNueva: String){
-        respuestaBebida = bebidaNueva
-
+    private fun calcularTotal() {
         _uiState.update { estadoActual ->
+            val precioPizza = when (estadoActual.pizza.tamanoPizza) {
+                TamanoPizza.pequena -> 4.95
+                TamanoPizza.mediana -> 6.95
+                TamanoPizza.grande -> 10.95
+                else -> 0.0
+            }
+
+            val precioBebida = when (estadoActual.bebida) {
+                TipoBebida.agua -> 2.0
+                TipoBebida.cola -> 2.5
+                TipoBebida.sin_bebida -> 0.0
+                else -> 0.0
+            }
+
+            val total = (precioPizza * estadoActual.cantidadPizza) +
+                    (precioBebida * estadoActual.cantidadBebida)
+
             estadoActual.copy(
-                bebida = respuestaBebida
+                precioTotal = total
             )
         }
     }
 
-    @Composable
-    private fun calcularTotal (){
-        _uiState.update { estadoActual ->
-            val tamanoPizza: String = estadoActual.pizza.tamanoPizza
-            val tipoBebida: String = estadoActual.bebida
-            val cantidadPizza = estadoActual.cantidadPizza
-            val cantidadBebida = estadoActual.cantidadBebida
 
-            var precioPizza: Double = 0.0
-            when(tamanoPizza){
-                stringResource(R.string.peque_a) -> precioPizza = 4.95
-                stringResource(R.string.mediana) -> precioPizza = 6.95
-                stringResource(R.string.grande) -> precioPizza = 10.95
-            }
-            var precioBebida: Double = 0.0
-            when(tipoBebida){
-                stringResource(R.string.agua) -> precioBebida = 2.0
-                stringResource(R.string.cola) -> precioBebida = 2.5
-                stringResource(R.string.sin_bebida) -> precioBebida = 0.0
-            }
-            val nuevoPrecioTotal: Double = (precioPizza*cantidadPizza) + (precioBebida*cantidadBebida)
-            estadoActual.copy(
-                precioTotal = nuevoPrecioTotal
-            )
-
-        }
+    fun reiniciarPedido() {
+        _uiState.value = RealizarPedidoUIState()
     }
 }
