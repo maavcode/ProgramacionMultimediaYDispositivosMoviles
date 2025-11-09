@@ -59,4 +59,6 @@
     <string name="pagar">Pay</string>
     <string name="siguiente">Next</string>
     <string name="atras">Back</string>
+    <string name="volver">Back</string>
+    <string name="resumen_de_tu_pedido">Order summary</string>
 </resources>

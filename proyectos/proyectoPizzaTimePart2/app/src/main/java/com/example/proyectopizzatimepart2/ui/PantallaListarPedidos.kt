@@ -102,7 +102,7 @@ fun TarjetaPedido (
                 )
             }
         }
-        
+
         if (expandido) {
             Column(
                 modifier = Modifier.padding(top = 8.dp),
