@@ -13,6 +13,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,7 +37,7 @@ import com.example.proyectopizzatimepart2.ui.viewmodel.RealizarPedidoViewModel
 
 @Composable
 fun PantallaListarPedidos(
-    onResumenPedidoPulsado: () -> Unit,
+    onResumenPulsado: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: RealizarPedidoViewModel
 ){
@@ -63,8 +67,7 @@ fun PantallaListarPedidos(
         items(listaPedidos) { pedidoActual ->
             TarjetaPedido(
                 pedido = pedidoActual,
-                modifier = Modifier,
-                onResumenPedidoPulsado
+                modifier = Modifier
             )
         }
     }
@@ -74,18 +77,17 @@ fun PantallaListarPedidos(
 fun TarjetaPedido (
     pedido: Pedido,
     modifier: Modifier,
-    onResumenPedidoPulsado: () -> Unit,
 ){
-
+    var expandido by remember { mutableStateOf(false) }
     Card (
         modifier = Modifier
             .width(350.dp)
-    ){
-        Column (
+    ) {
+        Column(
             modifier = Modifier
                 .padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
-        ){
+        ) {
             Text(
                 text = stringResource(R.string.pedido) + ": "
                         + transformarEnum(pedido.pizza.tipoPizza)
@@ -93,15 +95,27 @@ fun TarjetaPedido (
                         + transformarEnum(pedido.bebida)
             )
             Button(
-                onClick = onResumenPedidoPulsado
+                onClick = { expandido = !expandido }
             ) {
                 Text(
                     text = stringResource(R.string.resumen_del_pedido)
                 )
             }
         }
+        
+        if (expandido) {
+            Column(
+                modifier = Modifier.padding(top = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text("Cantidad de pizzas: ${pedido.cantidadPizza}")
+                Text("Bebida: ${pedido.bebida}")
+                Text("Cantidad bebida: ${pedido.cantidadBebida}")
+                Text("Precio total: ${pedido.precioTotal}")
+                Text("Pago: ${pedido.pago.opcionPago}")
+            }
 
-
+        }
     }
 }
 // De Enum a string

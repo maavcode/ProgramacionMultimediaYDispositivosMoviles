@@ -23,10 +23,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.proyectopizzatimepart2.R
 import com.example.proyectopizzatimepart2.datos.Datos
 import com.example.proyectopizzatimepart2.modelo.Pedido
@@ -90,14 +92,13 @@ fun PizzaTimeApp(
             }
             composable(route = Pantallas.PantallaListaPedidos.name) {
                 PantallaListarPedidos(
-                    onResumenPedidoPulsado = {
-                        navController.navigate(Pantallas.PantallaResumenPedido.name)
-                    },
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    viewModel = pedidoViewModel
+                    viewModel = pedidoViewModel,
+                    onResumenPulsado = { },
+                    modifier = Modifier.fillMaxSize()
                 )
             }
+
+
             composable(route = Pantallas.PantallaRealizarPedido.name) {
                 PantallaRealizarPedido(
                     onCancelarPulsado = {

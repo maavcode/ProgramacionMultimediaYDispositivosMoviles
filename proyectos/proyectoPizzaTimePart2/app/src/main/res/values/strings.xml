@@ -57,4 +57,6 @@
     <string name="siguiente">Siguiente</string>
     <string name="atras">Atras</string>
     <string name="no_vegana">No vegana</string>
+    <string name="volver">Volver</string>
+    <string name="resumen_de_tu_pedido">Resumen de tu pedido</string>
 </resources>
