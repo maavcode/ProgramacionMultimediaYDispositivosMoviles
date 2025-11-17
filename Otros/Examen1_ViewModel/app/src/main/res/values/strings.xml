@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Examen1_ViewModel</string>
+    <string name="anadir">Añadir Persona</string>
+    <string name="codigo">Código:</string>
+    <string name="nombre">Nombre</string>
+    <string name="rol">Elige el rol</string>
+    <string name="btn_anadir">Añadir</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="nia">NIA</string>
+    <string name="curso">Curso</string>
+    <string name="tutor">Tutor</string>
+    <string name="examen">Examen 2ºDAM</string>
+</resources>
