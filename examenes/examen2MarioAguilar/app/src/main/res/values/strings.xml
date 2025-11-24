@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Examen2MarioAguilar</string>
+    <string name="pantalla_principal">Pantalla principal</string>
+    <string name="atras">Atras</string>
+    <string name="pantalla_2">Pantalla 2</string>
+    <string name="pantalla_sorteo">Pantalla sorteo</string>
+    <string name="pantalla_sorteos_jugados">Pantalla sorteos jugados</string>
+    <string name="pantalla_estadisticas">Pantalla estadisticas</string>
+    <string name="bienvenido_a_tus_juegos_favoritos">Bienvenido a tus juegos favoritos</string>
+    <string name="juega_aqui">"Juega aqui: "</string>
+    <string name="decimo_de_navidad">Decimo de navidad</string>
+    <string name="tu_dia">Tu dia</string>
+    <string name="otras_opciones">Otras opciones</string>
+    <string name="sorteos_jugados">Sorteos jugados</string>
+    <string name="estadisticas">Estadisticas</string>
+</resources>
