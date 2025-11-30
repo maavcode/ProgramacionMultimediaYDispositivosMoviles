@@ -51,12 +51,22 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
 
+
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.material3)
+    implementation(libs.material3)
+
     implementation(libs.androidx.viewmodel)
     implementation(libs.squareup.retrofit2)
     implementation(libs.jetbrains.kotlinx.serialization)
     implementation(libs.jakewharton.retrofit)
     implementation(libs.squareup.okhttp3)
+
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

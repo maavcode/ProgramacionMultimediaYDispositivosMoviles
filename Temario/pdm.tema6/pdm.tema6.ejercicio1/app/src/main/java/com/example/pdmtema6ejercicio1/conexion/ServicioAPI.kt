@@ -1,6 +1,7 @@
 package com.example.pdmtema6ejercicio1.conexion
 
-import com.example.pdmtema6ejercicio1.modelo.Respuesta
+import com.example.pdmtema6ejercicio1.modelo.respuestas.RespuestaNaves
+import com.example.pdmtema6ejercicio1.modelo.respuestas.RespuestaPersonaje
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -19,7 +20,9 @@ private val retrofit = Retrofit.Builder()
 
 interface ServicioAPI {
     @GET("people")
-    suspend fun obtenerPersonaje(): Respuesta // Creada automaticamente con @GET
+    suspend fun obtenerPersonaje(): RespuestaPersonaje // Creada automaticamente con @GET
+    @GET("starships")
+    suspend fun obtenerNaves(): RespuestaNaves
 }
 
 object Api {
