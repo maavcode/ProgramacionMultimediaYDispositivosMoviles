@@ -21,42 +21,42 @@ fun PantallaDatosPersonajes(
     modifier: Modifier = Modifier,
     viewModel: StarwarsViewModel
 ) {
-    val starwarsUIState = viewModel.starwarsUIState
+    val estado = viewModel.starwarsUIState
 
-    when (starwarsUIState) {
-        is StarwarsUIState.Cargando -> PantallaCargando(modifier = modifier.fillMaxSize())
-        is StarwarsUIState.ExitoPersonajes -> PantallaExitoPersonajes(
-            respuestaPersonaje = starwarsUIState.data,
-            modifier = modifier.fillMaxWidth()
-        )
-        is StarwarsUIState.Error -> PantallaError (modifier = modifier.fillMaxWidth())
-        else -> PantallaError (modifier = modifier.fillMaxWidth())
+    if (estado is StarwarsUIState.Cargando) {
+        viewModel.obtenerPersonaje()
+    }
+
+    when (estado) {
+
+        is StarwarsUIState.Cargando ->
+            PantallaCargando(modifier = modifier.fillMaxSize())
+
+        is StarwarsUIState.ExitoPersonajes ->
+            PantallaExitoPersonajes(
+                respuestaPersonaje = estado.data,
+                modifier = modifier.fillMaxWidth()
+            )
+
+        else -> PantallaError(modifier = modifier.fillMaxWidth())
     }
 }
-
 
 @Composable
 fun PantallaExitoPersonajes(
     respuestaPersonaje: RespuestaPersonaje,
     modifier: Modifier = Modifier
-){
+) {
     LazyColumn(modifier = modifier) {
         items(respuestaPersonaje.resultados) { personaje ->
             Box(
                 modifier = Modifier.padding(8.dp)
-            ){
-                Column(
-                    modifier= Modifier.fillMaxWidth()
-                ){
-                    Text(
-                        text = personaje.nombre
-                    )
-                    Text(
-                        text = personaje.genero
-                    )
+            ) {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    Text(text = personaje.nombre)
+                    Text(text = personaje.genero)
                     HorizontalDivider()
                 }
-
             }
         }
     }

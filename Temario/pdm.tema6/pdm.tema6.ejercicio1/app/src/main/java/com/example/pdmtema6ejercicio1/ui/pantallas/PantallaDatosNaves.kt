@@ -12,7 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.pdmtema6ejercicio1.modelo.respuestas.RespuestaPersonaje
+import com.example.pdmtema6ejercicio1.modelo.respuestas.RespuestaNave
 import com.example.pdmtema6ejercicio1.ui.viewmodel.StarwarsUIState
 import com.example.pdmtema6ejercicio1.ui.viewmodel.StarwarsViewModel
 
@@ -21,41 +21,38 @@ fun PantallaDatosNaves(
     modifier: Modifier = Modifier,
     viewModel: StarwarsViewModel
 ) {
-    val starwarsUIState = viewModel.starwarsUIState
+    val estado = viewModel.starwarsUIState
 
-    when (starwarsUIState) {
+    if (estado is StarwarsUIState.Cargando) {
+        viewModel.obtenerNaves()
+    }
+    when (estado) {
         is StarwarsUIState.Cargando -> PantallaCargando(modifier = modifier.fillMaxSize())
         is StarwarsUIState.ExitoNaves -> PantallaExitoNaves(
-            respuestaNaves = starwarsUIState.data,
+            respuestaNave = estado.data,
             modifier = modifier.fillMaxWidth()
         )
         is StarwarsUIState.Error -> PantallaError (modifier = modifier.fillMaxWidth())
+        else -> PantallaError (modifier = modifier.fillMaxWidth())
     }
+
+    
 }
 
 
 @Composable
 fun PantallaExitoNaves(
-    respuestaPersonaje: RespuestaPersonaje,
+    respuestaNave: RespuestaNave,
     modifier: Modifier = Modifier
 ){
     LazyColumn(modifier = modifier) {
-        items(respuestaPersonaje.resultados) { personaje ->
-            Box(
-                modifier = Modifier.padding(8.dp)
-            ){
-                Column(
-                    modifier= Modifier.fillMaxWidth()
-                ){
-                    Text(
-                        text = personaje.nombre
-                    )
-                    Text(
-                        text = personaje.genero
-                    )
+        items(respuestaNave.resultados) { nave ->
+            Box(modifier = Modifier.padding(8.dp)) {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    Text(text = nave.name)
+                    Text(text = nave.model)
                     HorizontalDivider()
                 }
-
             }
         }
     }

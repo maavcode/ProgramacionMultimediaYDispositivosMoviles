@@ -33,6 +33,7 @@ import com.example.pdmtema6ejercicio1.R
 import com.example.pdmtema6ejercicio1.ui.pantallas.PantallaDatosNaves
 import com.example.pdmtema6ejercicio1.ui.pantallas.PantallaDatosPersonajes
 import com.example.pdmtema6ejercicio1.ui.pantallas.PantallaInicio
+import com.example.pdmtema6ejercicio1.ui.viewmodel.StarwarsUIState
 import com.example.pdmtema6ejercicio1.ui.viewmodel.StarwarsViewModel
 
 // Enum para guardar las pantallas existentes y sus titulos
@@ -76,6 +77,7 @@ fun StarWarsApp(
         ){
             // Grafo de las rutas
             composable(route = Pantallas.PantallaInicio.name) {
+                starWarsViewModel.resetearEstado() // Cada vez que pasa por el inicio resetea el estado
                 PantallaInicio(
                     onNavesPulsado = {
                         navController.navigate(Pantallas.PantallaDatosNaves.name)

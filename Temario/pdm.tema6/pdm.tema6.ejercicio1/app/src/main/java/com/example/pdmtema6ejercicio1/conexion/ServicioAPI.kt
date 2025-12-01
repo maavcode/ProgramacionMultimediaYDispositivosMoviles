@@ -1,6 +1,6 @@
 package com.example.pdmtema6ejercicio1.conexion
 
-import com.example.pdmtema6ejercicio1.modelo.respuestas.RespuestaNaves
+import com.example.pdmtema6ejercicio1.modelo.respuestas.RespuestaNave
 import com.example.pdmtema6ejercicio1.modelo.respuestas.RespuestaPersonaje
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
@@ -22,7 +22,7 @@ interface ServicioAPI {
     @GET("people")
     suspend fun obtenerPersonaje(): RespuestaPersonaje // Creada automaticamente con @GET
     @GET("starships")
-    suspend fun obtenerNaves(): RespuestaNaves
+    suspend fun obtenerNaves(): RespuestaNave
 }
 
 object Api {
