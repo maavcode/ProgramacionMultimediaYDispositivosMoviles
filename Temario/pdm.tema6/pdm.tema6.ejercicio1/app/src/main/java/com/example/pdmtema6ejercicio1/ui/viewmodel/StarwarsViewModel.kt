@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pdmtema6ejercicio1.conexion.Api
+import com.example.pdmtema6ejercicio1.modelo.Nave
 import com.example.pdmtema6ejercicio1.modelo.respuestas.RespuestaNave
 import com.example.pdmtema6ejercicio1.modelo.respuestas.RespuestaPersonaje
 import kotlinx.coroutines.launch
@@ -27,6 +28,10 @@ class StarwarsViewModel : ViewModel() {
     fun resetearEstado() {
         starwarsUIState = StarwarsUIState.Cargando
     }
+
+    var navePulsada: Nave by mutableStateOf(Nave()) // Para guardar la nave pulsada y mostrrar sus peliculas
+        private set
+
     fun obtenerPersonaje() {
         viewModelScope.launch {
             starwarsUIState = StarwarsUIState.Cargando

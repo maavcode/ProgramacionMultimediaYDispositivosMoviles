@@ -99,8 +99,10 @@ fun StarWarsApp(
                 PantallaDatosNaves(
                     modifier = Modifier,
                     viewModel = starWarsViewModel
+                    // onNavePulsada -> actualizarNavePuklsada y navigate pantallaLista
                 )
             }
+            // Pantalla Listar solo con la nave = viewmodel.navepulsada
 
         }
     }

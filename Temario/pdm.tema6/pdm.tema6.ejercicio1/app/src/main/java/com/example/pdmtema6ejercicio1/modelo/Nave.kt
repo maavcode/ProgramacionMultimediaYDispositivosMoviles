@@ -4,7 +4,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Nave(
-    val name: String,
-    val model: String
+data class Nave( // Variables instanciadas
+    @SerialName(value = "name")
+    val name: String = "",
+    @SerialName(value = "model")
+    val model: String = ""
 )
