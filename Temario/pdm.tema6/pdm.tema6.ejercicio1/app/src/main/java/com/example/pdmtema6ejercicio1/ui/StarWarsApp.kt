@@ -1,7 +1,6 @@
 package com.example.pdmtema6ejercicio1.ui
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material.icons.Icons
@@ -15,25 +14,20 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.example.pdmtema6ejercicio1.R
 import com.example.pdmtema6ejercicio1.ui.pantallas.PantallaDatosNaves
 import com.example.pdmtema6ejercicio1.ui.pantallas.PantallaDatosPersonajes
+import com.example.pdmtema6ejercicio1.ui.pantallas.PantallaDatosPlanetas
 import com.example.pdmtema6ejercicio1.ui.pantallas.PantallaInicio
-import com.example.pdmtema6ejercicio1.ui.viewmodel.StarwarsUIState
 import com.example.pdmtema6ejercicio1.ui.viewmodel.StarwarsViewModel
 
 // Enum para guardar las pantallas existentes y sus titulos
@@ -41,6 +35,7 @@ enum class Pantallas(@StringRes val titulo: Int) {
     PantallaInicio (titulo = R.string.pantalla_inicio),
     PantallaDatosNaves (titulo = R.string.pantalla_datos_naves),
     PantallaDatosPersonajes (titulo = R.string.pantalla_datos_personajes),
+    PantallaDatosPlanetas (titulo = R.string.pantalla_datos_planetas)
 }
 
 @Composable
@@ -57,7 +52,7 @@ fun StarWarsApp(
         pilaRetroceso?.destination?.route ?: Pantallas.PantallaInicio.name
     )
 
-    val starWarsViewModel: StarwarsViewModel = viewModel ()
+    val starWarsViewModel: StarwarsViewModel = viewModel (factory = StarwarsViewModel.Factory)
 
     Scaffold(
         topBar = {
@@ -84,6 +79,9 @@ fun StarWarsApp(
                     },
                     onPersonajesPulsado = {
                         navController.navigate(Pantallas.PantallaDatosPersonajes.name)
+                    },
+                    onPlanetasPulsado = {
+                        navController.navigate(Pantallas.PantallaDatosPlanetas.name)
                     }
                 )
             }
@@ -100,6 +98,13 @@ fun StarWarsApp(
                     modifier = Modifier,
                     viewModel = starWarsViewModel
                     // onNavePulsada -> actualizarNavePuklsada y navigate pantallaLista
+                )
+            }
+
+            composable (route = Pantallas.PantallaDatosPlanetas.name) {
+                PantallaDatosPlanetas(
+                    modifier = Modifier,
+                    viewModel = starWarsViewModel
                 )
             }
             // Pantalla Listar solo con la nave = viewmodel.navepulsada

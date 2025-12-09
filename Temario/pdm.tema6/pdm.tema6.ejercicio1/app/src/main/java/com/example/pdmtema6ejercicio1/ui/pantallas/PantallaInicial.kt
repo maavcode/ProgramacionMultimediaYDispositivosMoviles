@@ -1,6 +1,5 @@
 package com.example.pdmtema6ejercicio1.ui.pantallas
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,7 +7,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +21,9 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun PantallaInicio(
     onNavesPulsado: () -> Unit,
-    onPersonajesPulsado: () -> Unit) {
+    onPersonajesPulsado: () -> Unit,
+    onPlanetasPulsado: () -> Unit
+) {
         var opcionSeleccionada by remember { mutableStateOf("") }
         Column (modifier= Modifier.padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally) {
@@ -43,7 +43,7 @@ fun PantallaInicio(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                listOf("Personajes", "Naves").forEach { opcion ->
+                listOf("Personajes", "Naves", "Planetas").forEach { opcion ->
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         RadioButton(
                             selected = (opcion == opcionSeleccionada ),
@@ -58,6 +58,7 @@ fun PantallaInicio(
                     when (opcionSeleccionada) {
                         "Personajes" -> onPersonajesPulsado()
                         "Naves" -> onNavesPulsado()
+                        "Planetas" -> onPlanetasPulsado()
                     }
                 },
             )
