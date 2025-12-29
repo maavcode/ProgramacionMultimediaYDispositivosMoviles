@@ -1,4 +1,6 @@
 <resources>
+    <string name="cargando">Cargando</string>
+    <string name="error_de_conexion">Error de conexión</string>
     <string name="app_name">pdm.tema6.ejercicio2</string>
     <string name="pantalla_inicio">Pantalla Inicio</string>
     <string name="atras">Atras</string>

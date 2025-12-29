@@ -23,9 +23,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
 import com.example.pdmtema6ejercicio2.R
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaInicio
-
+import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaViewModel
 
 
 enum class Pantallas (@StringRes val titulo: Int) {
@@ -42,7 +43,7 @@ fun TiendaApp(
         pilaRetroceso?.destination?.route ?: Pantallas.PantallaInicio.name
     )
 
-    // val starWarsViewModel: StarwarsViewModel = viewModel (factory = StarwarsViewModel.Factory)
+    val tiendaViewModel: TiendaViewModel = viewModel (factory = TiendaViewModel.Factory)
 
     Scaffold(
         topBar = {
@@ -64,7 +65,9 @@ fun TiendaApp(
             composable(route = Pantallas.PantallaInicio.name) {
                 //starWarsViewModel.resetearEstado() // Cada vez que pasa por el inicio resetea el estado
                 PantallaInicio(
-
+                    estado = tiendaViewModel.tiendaUIState,
+                    cargarUsuarios = { tiendaViewModel.obtenerUsuarios() },
+                    onUsuarioPulsado = {}
                 )
             }
 

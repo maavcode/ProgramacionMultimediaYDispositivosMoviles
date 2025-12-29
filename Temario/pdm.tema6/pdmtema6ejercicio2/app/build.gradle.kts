@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.jetbrains.kotlinx.serialization)
     implementation(libs.jakewharton.retrofit)
     implementation(libs.squareup.okhttp3)
+    implementation(libs.androidx.ui)
 
 
     testImplementation(libs.junit)
