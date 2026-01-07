@@ -23,7 +23,7 @@ sealed interface TiendaUIState {
     data class ObtenerUsuarioExito(val usuario: Usuario) : TiendaUIState
 
 
-    // Otros
+    // Otros estados
     object Cargando : TiendaUIState
     object Error : TiendaUIState
 }
@@ -41,10 +41,19 @@ class TiendaViewModel (
     var tiendaUIState: TiendaUIState by mutableStateOf(TiendaUIState.Cargando)
         private set
 
-    /*
-    var usuarioPulsado: Usuario by mutableStateOf("")
-        private set
-    */
+    fun obtenerUsuarioSeleccionado(usuarioId: Int){
+        viewModelScope.launch {
+            tiendaUIState = TiendaUIState.Cargando
+            try {
+                val usuario = usuarioRepositorio.obtenerUsuario(usuarioId)
+                Log.d("TiendaViewModel", "Usuario seleccionado: $usuario")
+                tiendaUIState = TiendaUIState.ObtenerUsuarioExito(usuario)
+            } catch (e: Exception) {
+                tiendaUIState = TiendaUIState.Error
+            }
+        }
+
+    }
 
     init {
         obtenerUsuarios()

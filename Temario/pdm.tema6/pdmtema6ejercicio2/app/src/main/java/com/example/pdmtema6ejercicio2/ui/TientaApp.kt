@@ -22,15 +22,18 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.example.pdmtema6ejercicio2.R
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaInicio
+import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaUsuario
 import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaViewModel
 
 
 enum class Pantallas (@StringRes val titulo: Int) {
     PantallaInicio (titulo = R.string.pantalla_inicio),
+    PantallaUsuario (titulo = R.string.pantalla_usuario)
 }
 
 @Composable
@@ -67,7 +70,13 @@ fun TiendaApp(
                 PantallaInicio(
                     estado = tiendaViewModel.tiendaUIState,
                     cargarUsuarios = { tiendaViewModel.obtenerUsuarios() },
-                    onUsuarioPulsado = {}
+                    onUsuarioPulsado = {navController.navigate(route = Pantallas.PantallaUsuario.name)},
+                    actualizarUsuarioSeleccionado = { tiendaViewModel.obtenerUsuarioSeleccionado() },
+                )
+            }
+            composable (route = Pantallas.PantallaUsuario.name){
+                PantallaUsuario(
+                    estado = tiendaViewModel.tiendaUIState,
                 )
             }
 
