@@ -5,13 +5,16 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import com.example.pdmtema6ejercicio2.conexion.TiendaServicioAPI
+import com.example.pdmtema6ejercicio2.datos.repositorios.ConexionProductoRepositorio
 import com.example.pdmtema6ejercicio2.datos.repositorios.ConexionUsuarioRepositorio
+import com.example.pdmtema6ejercicio2.datos.repositorios.ProductoRepositorio
 import com.example.pdmtema6ejercicio2.datos.repositorios.UsuarioRepositorio
 import com.example.pdmtema6ejercicio2.modelo.Usuario
 
 interface ContenedorApp {
     // Repositorios
     val usuarioRepositorio: UsuarioRepositorio
+    val productoRepositorio: ProductoRepositorio
     // EJEMPLO: val personajesRepositorio: PersonajesRepositorio
 }
 
@@ -28,6 +31,9 @@ class TiendaContenedorApp: ContenedorApp{
     // Declaracion de REPOSITORIOS
     override val usuarioRepositorio: UsuarioRepositorio by lazy {
         ConexionUsuarioRepositorio(servicioRetrofit)
+    }
+    override val productoRepositorio: ProductoRepositorio by lazy {
+        ConexionProductoRepositorio(servicioRetrofit)
     }
     /* EJEMPLO
     override val personajesRepositorio: PersonajesRepositorio by lazy {

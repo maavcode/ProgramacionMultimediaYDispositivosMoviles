@@ -1,36 +1,57 @@
 package com.example.pdmtema6ejercicio2.ui.pantallas
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
 import com.example.pdmtema6ejercicio2.modelo.Usuario
 import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaUIState
 
 @Composable
 fun PantallaUsuario(
-    estado: TiendaUIState
-) {
-    when (estado) {
-
-        is TiendaUIState.Cargando ->
-            PantallaCargando(modifier = Modifier.fillMaxSize())
-
-        is TiendaUIState.ObtenerUsuarioExito ->
-            PantallaExitoUsuario(usuario = estado.usuario)
-
-        else ->
-            PantallaError(modifier = Modifier.fillMaxWidth())
-    }
-}
-
-@Composable
-fun PantallaExitoUsuario(
-    usuario: Usuario
+    usuario: Usuario,
+    onAnyadirPulsado: () -> Unit,
+    onListarPulsado: () -> Unit
 ){
-    Text(
-        text = "Bienvenido ${usuario.nombre}"
-    )
+    Column (
+        modifier = Modifier.fillMaxWidth(),
+    ){
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "Bienvenido ${usuario.nombre}",
+            textAlign = TextAlign.Center,
+            fontSize = 30.sp
+        )
+
+        Row (
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ){
+            Button(
+                onClick = {onAnyadirPulsado()}
+            ) {
+                Text(
+                    text = "Añadir productos"
+                )
+            }
+            Button(
+                onClick = {onListarPulsado()}
+            ) {
+                Text(
+                    text = "Listar productos en propiedad"
+                )
+            }
+        }
+
+    }
+
 }

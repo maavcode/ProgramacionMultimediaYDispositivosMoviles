@@ -11,8 +11,8 @@ data class Usuario(
     val nombre: String,
     @SerialName("apellido")
     val apellido: String,
-    @SerialName("saldo")
-    val saldo: Double,
-    @SerialName("idPedidos")
-    val idPedidos: List<Int>,
+    @SerialName("dni")
+    val dni: String,
+    @SerialName("idProductos")
+    val idProductos: List<Int>,
 )

@@ -10,7 +10,9 @@ import androidx.compose.ui.unit.dp
 import com.example.pdmtema6ejercicio2.R
 
 @Composable
-fun PantallaCargando(modifier: Modifier = Modifier) {
+fun PantallaCargando(
+    modifier: Modifier = Modifier
+) {
     Image(
         modifier = modifier.size(200.dp),
         painter = painterResource(R.drawable.cargando),
