@@ -13,6 +13,6 @@ data class Usuario(
     val apellido: String,
     @SerialName("dni")
     val dni: String,
-    @SerialName("idProductos")
-    val idProductos: List<Int>,
+    @SerialName("productos")
+    val idProductos: List<Producto>,
 )

@@ -22,8 +22,6 @@ import java.io.IOException
 sealed interface TiendaUIState {
     // EXITOS
     data class ObtenerUsuarioExito(val usuario: Usuario) : TiendaUIState
-    data class ObtenerProductosExito(val listaProductos: List<Producto>): TiendaUIState
-
 
     // Otros estados
     object Cargando : TiendaUIState
@@ -33,8 +31,6 @@ sealed interface TiendaUIState {
 class TiendaViewModel (
     // Añadir repositorios
     private val usuarioRepositorio: UsuarioRepositorio,
-    private val productoRepositorio: ProductoRepositorio
-
 ): ViewModel() {
     var tiendaUIState: TiendaUIState by mutableStateOf(TiendaUIState.Cargando)
         private set
@@ -50,37 +46,21 @@ class TiendaViewModel (
         viewModelScope.launch {
             // Me aseguro de que esta en cargando el estado
             tiendaUIState = TiendaUIState.Cargando
-            try {
+
+            tiendaUIState = try {
                 // Obtengo el usuario
                 val usuario = usuarioRepositorio.obtenerUsuario()
                 // Asignar usuario
                 usuarioSeleccionado = usuario
                 Log.d("TiendaViewModel", "Usuario recibido: $usuario")
-                tiendaUIState = TiendaUIState.ObtenerUsuarioExito(usuario)
+                TiendaUIState.ObtenerUsuarioExito(usuario)
             } catch (e: Exception){
                 Log.e("TiendaViewModel", "Error al obtener usuario", e)
-                tiendaUIState = TiendaUIState.Error
+                TiendaUIState.Error
             }
+
         }
     }
-
-    fun obtenerProductos(){
-        viewModelScope.launch {
-            // Me aseguro de que esta en cargando el estado
-            tiendaUIState = TiendaUIState.Cargando
-            try {
-                // Obtengo la lista de productos
-                val listaProductos = productoRepositorio.obtenerProductos()
-                Log.d("TiendaViewModel", "Lista de productos: $listaProductos")
-                // Introduzco la lista de los productos al estado (por eso puedo utilizarlo luego)
-                tiendaUIState = TiendaUIState.ObtenerProductosExito(listaProductos)
-            } catch (e: Exception){
-                Log.e("TiendaViewModel", "Error al obtener productos", e)
-                tiendaUIState = TiendaUIState.Error
-            }
-        }
-    }
-
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
@@ -91,7 +71,6 @@ class TiendaViewModel (
 
                 TiendaViewModel(
                     usuarioRepositorio = usuarioRepositorio,
-                    productoRepositorio = productoRepositorio
                 )
             }
         }

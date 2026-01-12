@@ -30,7 +30,4 @@ interface TiendaServicioAPI {
         @Path("id") id: Int
     ): Usuario
      */
-
-    // Metodos productos
-    @GET("productos")suspend fun obtenerProductos(): List<Producto>
 }

@@ -27,8 +27,8 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.example.pdmtema6ejercicio2.R
-import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaAnyadirProductos
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaInicio
+import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaProductos
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaUsuario
 import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaUIState
 import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaViewModel
@@ -37,8 +37,7 @@ import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaViewModel
 enum class Pantallas (@StringRes val titulo: Int) {
     PantallaInicio (titulo = R.string.pantalla_inicio),
     PantallaUsuario (titulo = R.string.pantalla_usuario),
-    PantallaAnyadirProducto(titulo = R.string.pantalla_anyadir_producto),
-    PantallaListarProductos(titulo = R.string.pantalla_listarproductos)
+    PantallaProductos(titulo = R.string.pantalla_productos)
 }
 
 @Composable
@@ -75,22 +74,13 @@ fun TiendaApp(
                 PantallaInicio(
                     estado = tiendaViewModel.tiendaUIState,
                     usuario = tiendaViewModel.usuarioSeleccionado,
-                    onAnyadirPulsado = { navController.navigate(route = Pantallas.PantallaAnyadirProducto.name) },
-                    onListarPulsado = { navController.navigate(route = Pantallas.PantallaListarProductos.name) }
+                    onListarPulsado = { navController.navigate(route = Pantallas.PantallaProductos.name) }
                 )
             }
-            composable (route = Pantallas.PantallaUsuario.name){
+            composable ( route = Pantallas.PantallaProductos.name ) {
                 Log.d("TiendaViewModel", "Estado: ${tiendaViewModel.tiendaUIState}")
-                PantallaUsuario(
-                    usuario = tiendaViewModel.usuarioSeleccionado,
-                    onAnyadirPulsado = { navController.navigate(route = Pantallas.PantallaAnyadirProducto.name) },
-                    onListarPulsado = { navController.navigate(route = Pantallas.PantallaListarProductos.name) },
-                )
-            }
-            composable ( route = Pantallas.PantallaAnyadirProducto.name ) {
-                Log.d("TiendaViewModel", "Estado: ${tiendaViewModel.tiendaUIState}")
-                PantallaAnyadirProductos(
-                    listaProductos =
+                PantallaProductos(
+                    listaProductos = tiendaViewModel.usuarioSeleccionado.idProductos
                 )
             }
 

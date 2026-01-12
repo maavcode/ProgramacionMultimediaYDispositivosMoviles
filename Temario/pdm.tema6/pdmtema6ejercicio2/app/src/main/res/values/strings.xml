@@ -7,4 +7,5 @@
     <string name="pantalla_usuario">Pantalla Usuario</string>
     <string name="pantalla_anyadir_producto">Pantalla Anyadir Producto</string>
     <string name="pantalla_listarproductos">Pantalla ListarProductos</string>
+    <string name="pantalla_productos">Pantalla Productos</string>
 </resources>
