@@ -38,4 +38,7 @@ interface TiendaServicioAPI {
      */
 
     // Metodos Productos
+    @GET("productos")
+    suspend fun obtenerProductos(
+    ): List<Producto>
 }

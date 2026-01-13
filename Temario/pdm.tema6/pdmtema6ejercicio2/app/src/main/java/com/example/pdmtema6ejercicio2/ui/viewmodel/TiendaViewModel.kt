@@ -22,6 +22,7 @@ import java.io.IOException
 sealed interface TiendaUIState {
     // EXITOS
     data class ObtenerUsuariosExito(val listaUsuarios: List<Usuario>) : TiendaUIState
+    data class ObtenerProductosExito(val listaProductos: List<Producto>): TiendaUIState
 
     // Otros estados
     object Cargando : TiendaUIState
@@ -31,6 +32,7 @@ sealed interface TiendaUIState {
 class TiendaViewModel (
     // Añadir repositorios
     private val usuarioRepositorio: UsuarioRepositorio,
+    private val productoRepositorio: ProductoRepositorio
 ): ViewModel() {
     var tiendaUIState: TiendaUIState by mutableStateOf(TiendaUIState.Cargando)
         private set
@@ -65,6 +67,24 @@ class TiendaViewModel (
         }
     }
 
+    fun obtenerProductos(){
+        viewModelScope.launch {
+            // Me aseguro de que esta en cargando el estado
+            tiendaUIState = TiendaUIState.Cargando
+
+            tiendaUIState = try {
+                // Obtengo el usuario
+                val listaProductos = productoRepositorio.obtenerProductos()
+                Log.d("TiendaViewModel", "Usuarios recibidos: $listaProductos")
+                TiendaUIState.ObtenerProductosExito(listaProductos)
+            } catch (e: Exception){
+                Log.e("TiendaViewModel", "Error al obtener los productos", e)
+                TiendaUIState.Error
+            }
+
+        }
+    }
+
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
@@ -75,6 +95,7 @@ class TiendaViewModel (
 
                 TiendaViewModel(
                     usuarioRepositorio = usuarioRepositorio,
+                    productoRepositorio = productoRepositorio
                 )
             }
         }

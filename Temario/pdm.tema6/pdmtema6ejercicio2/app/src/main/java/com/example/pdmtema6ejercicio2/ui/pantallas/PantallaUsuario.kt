@@ -19,7 +19,8 @@ import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaUIState
 @Composable
 fun PantallaUsuario(
     usuario: Usuario,
-    onListarPulsado: () -> Unit
+    onListarPulsado: () -> Unit,
+    onAnyadirProductos: () -> Unit
 ){
     Column (
         modifier = Modifier.fillMaxWidth(),
@@ -36,7 +37,7 @@ fun PantallaUsuario(
             horizontalArrangement = Arrangement.Center
         ){
             Button(
-                onClick = {}
+                onClick = {onAnyadirProductos()}
             ) {
                 Text(
                     text = "Añadir productos"

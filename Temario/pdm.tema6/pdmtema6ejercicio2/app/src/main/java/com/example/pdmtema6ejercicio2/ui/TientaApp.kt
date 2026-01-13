@@ -25,6 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.pdmtema6ejercicio2.R
+import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaAnyadirProductos
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaInicio
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaProductos
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaUsuario
@@ -34,7 +35,8 @@ import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaViewModel
 enum class Pantallas (@StringRes val titulo: Int) {
     PantallaInicio (titulo = R.string.pantalla_inicio),
     PantallaUsuario (titulo = R.string.pantalla_usuario),
-    PantallaProductos(titulo = R.string.pantalla_productos)
+    PantallaProductos(titulo = R.string.pantalla_productos),
+    PantallaAnyadirProductos(titulo = R.string.pantalla_anyadir_productos)
 }
 
 @Composable
@@ -74,6 +76,9 @@ fun TiendaApp(
                         Log.d("","Usuario actualizado de ${tiendaViewModel.usuarioSeleccionado} a $it")
                         tiendaViewModel.actualizarUsuarioSeleccionado(it)
                         navController.navigate(route = Pantallas.PantallaUsuario.name)
+                    },
+                    onAnyadirProducto = {
+                        tiendaViewModel.obtenerProductos()
                     }
                 )
             }
@@ -81,7 +86,11 @@ fun TiendaApp(
                 Log.d("TiendaViewModel", "Estado: ${tiendaViewModel.tiendaUIState}")
                 PantallaUsuario(
                     usuario = tiendaViewModel.usuarioSeleccionado,
-                    onListarPulsado = {navController.navigate(route = Pantallas.PantallaProductos.name)}
+                    onListarPulsado = {navController.navigate(route = Pantallas.PantallaProductos.name)},
+                    onAnyadirProductos = {
+                        tiendaViewModel.obtenerProductos()
+                        navController.navigate(route = Pantallas.PantallaAnyadirProductos.name)
+                    }
                 )
             }
             composable ( route = Pantallas.PantallaProductos.name ) {
@@ -90,7 +99,9 @@ fun TiendaApp(
                     listaProductos = tiendaViewModel.usuarioSeleccionado.productos
                 )
             }
-
+//            composable (rote) {
+//
+//            }
         }
     }
 }
