@@ -23,14 +23,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navigation
 import com.example.pdmtema6ejercicio2.R
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaInicio
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaProductos
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaUsuario
-import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaUIState
 import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaViewModel
 
 
@@ -73,14 +70,24 @@ fun TiendaApp(
                 Log.d("TiendaViewModel", "Estado: ${tiendaViewModel.tiendaUIState}")
                 PantallaInicio(
                     estado = tiendaViewModel.tiendaUIState,
+                    onUsuarioPulsado = {
+                        Log.d("","Usuario actualizado de ${tiendaViewModel.usuarioSeleccionado} a $it")
+                        tiendaViewModel.actualizarUsuarioSeleccionado(it)
+                        navController.navigate(route = Pantallas.PantallaUsuario.name)
+                    }
+                )
+            }
+            composable (route = Pantallas.PantallaUsuario.name) {
+                Log.d("TiendaViewModel", "Estado: ${tiendaViewModel.tiendaUIState}")
+                PantallaUsuario(
                     usuario = tiendaViewModel.usuarioSeleccionado,
-                    onListarPulsado = { navController.navigate(route = Pantallas.PantallaProductos.name) }
+                    onListarPulsado = {navController.navigate(route = Pantallas.PantallaProductos.name)}
                 )
             }
             composable ( route = Pantallas.PantallaProductos.name ) {
                 Log.d("TiendaViewModel", "Estado: ${tiendaViewModel.tiendaUIState}")
                 PantallaProductos(
-                    listaProductos = tiendaViewModel.usuarioSeleccionado.idProductos
+                    listaProductos = tiendaViewModel.usuarioSeleccionado.productos
                 )
             }
 

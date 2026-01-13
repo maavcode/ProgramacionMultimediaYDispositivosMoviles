@@ -7,16 +7,16 @@ import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaUIState
 @Composable
 fun PantallaInicio(
     estado: TiendaUIState,
-    usuario: Usuario,
-    onListarPulsado: () -> Unit
+    onUsuarioPulsado: (usuario: Usuario) -> Unit
 ) {
     when (estado) {
         is TiendaUIState.Cargando -> PantallaCargando()
         is TiendaUIState.Error -> PantallaError()
-        is TiendaUIState.ObtenerUsuarioExito ->
-            PantallaUsuario(
-                usuario = usuario,
-                onListarPulsado = onListarPulsado
+        is TiendaUIState.ObtenerUsuariosExito ->
+            PantallaUsuarios(
+                listaUsuarios = estado.listaUsuarios,
+                onUsuarioPulsado = onUsuarioPulsado
             )
+
     }
 }

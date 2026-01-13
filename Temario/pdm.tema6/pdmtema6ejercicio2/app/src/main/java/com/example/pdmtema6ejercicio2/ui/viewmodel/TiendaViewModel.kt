@@ -21,7 +21,7 @@ import java.io.IOException
 
 sealed interface TiendaUIState {
     // EXITOS
-    data class ObtenerUsuarioExito(val usuario: Usuario) : TiendaUIState
+    data class ObtenerUsuariosExito(val listaUsuarios: List<Usuario>) : TiendaUIState
 
     // Otros estados
     object Cargando : TiendaUIState
@@ -35,32 +35,36 @@ class TiendaViewModel (
     var tiendaUIState: TiendaUIState by mutableStateOf(TiendaUIState.Cargando)
         private set
 
-    var usuarioSeleccionado: Usuario by mutableStateOf(Usuario(0,"","","",listOf()))
+    var usuarioSeleccionado: Usuario by mutableStateOf(Usuario("","","","",listOf()))
         private set
 
-    init {
-        obtenerUsuario()
+    // IMPORTANTE TRABAJAR CON MODELOS
+    fun actualizarUsuarioSeleccionado(usuario: Usuario){
+        usuarioSeleccionado = usuario
     }
 
-    fun obtenerUsuario(){
+    init {
+        obtenerUsuarios()
+    }
+
+    fun obtenerUsuarios(){
         viewModelScope.launch {
             // Me aseguro de que esta en cargando el estado
             tiendaUIState = TiendaUIState.Cargando
 
             tiendaUIState = try {
                 // Obtengo el usuario
-                val usuario = usuarioRepositorio.obtenerUsuario()
-                // Asignar usuario
-                usuarioSeleccionado = usuario
-                Log.d("TiendaViewModel", "Usuario recibido: $usuario")
-                TiendaUIState.ObtenerUsuarioExito(usuario)
+                val listaUsuarios = usuarioRepositorio.obtenerUsuarios()
+                Log.d("TiendaViewModel", "Usuarios recibidos: $listaUsuarios")
+                TiendaUIState.ObtenerUsuariosExito(listaUsuarios)
             } catch (e: Exception){
-                Log.e("TiendaViewModel", "Error al obtener usuario", e)
+                Log.e("TiendaViewModel", "Error al obtener los usuarios", e)
                 TiendaUIState.Error
             }
 
         }
     }
+
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

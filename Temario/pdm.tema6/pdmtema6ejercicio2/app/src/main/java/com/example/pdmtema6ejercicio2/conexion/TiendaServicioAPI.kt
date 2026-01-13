@@ -11,8 +11,14 @@ import retrofit2.http.Path
 
 interface TiendaServicioAPI {
     // Metodos Usuario
-    @GET("usuario")
-    suspend fun obtenerUsuario()
+    @GET("usuarios")
+    suspend fun obtenerUsuarios(
+    ): List<Usuario>
+
+    @GET("usuarios/{id}")
+    suspend fun obtenerUsuario(
+        @Path("id") id: String
+    )
     : Usuario
     /*
     @POST("usuarios")
@@ -30,4 +36,6 @@ interface TiendaServicioAPI {
         @Path("id") id: Int
     ): Usuario
      */
+
+    // Metodos Productos
 }

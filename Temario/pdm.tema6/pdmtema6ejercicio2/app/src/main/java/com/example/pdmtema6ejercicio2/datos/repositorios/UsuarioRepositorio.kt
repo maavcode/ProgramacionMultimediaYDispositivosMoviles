@@ -4,7 +4,8 @@ import com.example.pdmtema6ejercicio2.conexion.TiendaServicioAPI
 import com.example.pdmtema6ejercicio2.modelo.Usuario
 
 interface UsuarioRepositorio {
-    suspend fun obtenerUsuario(): Usuario
+    suspend fun obtenerUsuarios(): List<Usuario>
+    suspend fun obtenerUsuario(id: String): Usuario
     suspend fun actualizarUsuario(id: Int, usuario: Usuario): Usuario
 
 }
@@ -12,6 +13,7 @@ interface UsuarioRepositorio {
 class ConexionUsuarioRepositorio(
     private val tiendaServicioAPI: TiendaServicioAPI
 ): UsuarioRepositorio {
-    override suspend fun obtenerUsuario(): Usuario = tiendaServicioAPI.obtenerUsuario()
+    override suspend fun obtenerUsuarios(): List<Usuario> = tiendaServicioAPI.obtenerUsuarios()
+    override suspend fun obtenerUsuario(id:String): Usuario = tiendaServicioAPI.obtenerUsuario(id)
     override suspend fun actualizarUsuario(id: Int, usuario: Usuario): Usuario = tiendaServicioAPI.actualizarUsuario(usuario)
 }
