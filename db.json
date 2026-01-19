@@ -1,0 +1,142 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "usuarios": [
+    {
+      "id": "1",
+      "nombre": "Mario",
+      "apellido": "Aguilar Avila",
+      "dni": "45524195H",
+      "productos": [
+        {
+          "id": "1",
+          "nombre": "camiseta",
+          "precio": "20.0"
+        },
+        {
+          "id": "2",
+          "nombre": "pantalones",
+          "precio": "25.0"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "nombre": "Angel",
+      "apellido": "Sanchis",
+      "dni": "13241235C",
+      "productos": [
+        {
+          "id": "1",
+          "nombre": "zapatillas",
+          "precio": "35.0"
+        },
+        {
+          "id": "2",
+          "nombre": "pantalones",
+          "precio": "25.0"
+        }
+      ]
+    }
+  ],
+  "productos": [
+    {
+      "id": "1",
+      "nombre": "camiseta",
+      "precio": "20.0"
+    },
+    {
+      "id": "2",
+      "nombre": "pantalones",
+      "precio": "25.0"
+    },
+    {
+      "id": "3",
+      "nombre": "zapatillas",
+      "precio": "35.0"
+    }
+  ],
+  "usuariosAndres": [
+    {
+      "id": "1",
+      "nombre": "Mario",
+      "email": "email@gmail.com",
+      "pedidos": [
+        {
+          "id": "1",
+          "nombre": "camiseta",
+          "precio": "20.0"
+        },
+        {
+          "id": "2",
+          "nombre": "pantalones",
+          "precio": "25.0"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "nombre": "Angel",
+      "email": "email@gmail.com",
+      "pedidos": [
+        {
+          "id": "1",
+          "nombre": "zapatillas",
+          "precio": 35
+        },
+        {
+          "id": "2",
+          "nombre": "pantalones",
+          "precio": 25
+        },
+        {
+          "id": "ec843315-1e85-49c2-8fde-01dc58c932c4",
+          "nombre": "Chanclas",
+          "precio": 12.5
+        }
+      ]
+    }
+  ],
+  "productosAndres": [
+    {
+      "id": "1",
+      "nombre": "camiseta",
+      "precio": "20.0"
+    },
+    {
+      "id": "2",
+      "nombre": "pantalones",
+      "precio": "25.0"
+    },
+    {
+      "id": "3",
+      "nombre": "zapatillas",
+      "precio": "35.0"
+    }
+  ]
+}

@@ -29,6 +29,7 @@ sealed interface TiendaUIState {
     object Error : TiendaUIState
 }
 
+
 class TiendaViewModel (
     // Añadir repositorios
     private val usuarioRepositorio: UsuarioRepositorio,

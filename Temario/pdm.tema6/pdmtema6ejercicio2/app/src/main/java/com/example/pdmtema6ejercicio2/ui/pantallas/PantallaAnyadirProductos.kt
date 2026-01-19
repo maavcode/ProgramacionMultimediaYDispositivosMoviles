@@ -12,26 +12,12 @@ import com.example.pdmtema6ejercicio2.modelo.Producto
 import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaUIState
 
 
+
 @Composable
 fun PantallaAnyadirProductos(
     listaProductos: List<Producto>,
     onAnyadirProducto: () -> Unit
 ){
-
-    when (estado) {
-        is TiendaUIState.Cargando -> PantallaCargando()
-        is TiendaUIState.Error -> PantallaError()
-        is TiendaUIState.ObtenerUsuariosExito ->
-            PantallaUsuarios(
-                listaUsuarios = estado.listaUsuarios,
-                onUsuarioPulsado = onUsuarioPulsado
-            )
-        is TiendaUIState.ObtenerProductosExito ->
-            PantallaAnyadirProductos(
-                listaProductos = estado.listaProductos,
-                onAnyadirProducto = onAnyadirProducto
-            )
-    }
     LazyColumn {
         items(listaProductos){ producto ->
             Row (
