@@ -21,12 +21,21 @@ import java.io.IOException
 
 sealed interface TiendaUIState {
     // EXITOS
-    data class ObtenerUsuariosExito(val listaUsuarios: List<Usuario>) : TiendaUIState
-    data class ObtenerProductosExito(val listaProductos: List<Producto>): TiendaUIState
+    data class ObtenerExito(val listaUsuarios: List<Usuario>) : TiendaUIState
+    data class ActualizarExito(val Usuario: Usuario) : TiendaUIState
 
     // Otros estados
     object Cargando : TiendaUIState
     object Error : TiendaUIState
+}
+
+sealed interface ProductosUIState {
+    // EXITOS
+    data class ObtenerExito(val listaProductos: List<Producto>): ProductosUIState;
+
+    // Otros estados
+    object Cargando : ProductosUIState
+    object Error : ProductosUIState
 }
 
 
@@ -36,6 +45,8 @@ class TiendaViewModel (
     private val productoRepositorio: ProductoRepositorio
 ): ViewModel() {
     var tiendaUIState: TiendaUIState by mutableStateOf(TiendaUIState.Cargando)
+        private set
+    var productoUIState: ProductosUIState by mutableStateOf(ProductosUIState.Cargando)
         private set
 
     var usuarioSeleccionado: Usuario by mutableStateOf(Usuario("","","","",listOf()))
@@ -59,7 +70,7 @@ class TiendaViewModel (
                 // Obtengo el usuario
                 val listaUsuarios = usuarioRepositorio.obtenerUsuarios()
                 Log.d("TiendaViewModel", "Usuarios recibidos: $listaUsuarios")
-                TiendaUIState.ObtenerUsuariosExito(listaUsuarios)
+                TiendaUIState.ObtenerExito(listaUsuarios)
             } catch (e: Exception){
                 Log.e("TiendaViewModel", "Error al obtener los usuarios", e)
                 TiendaUIState.Error
@@ -71,18 +82,36 @@ class TiendaViewModel (
     fun obtenerProductos(){
         viewModelScope.launch {
             // Me aseguro de que esta en cargando el estado
-            tiendaUIState = TiendaUIState.Cargando
+            productoUIState = ProductosUIState.Cargando
 
-            tiendaUIState = try {
+            productoUIState = try {
                 // Obtengo el usuario
                 val listaProductos = productoRepositorio.obtenerProductos()
                 Log.d("TiendaViewModel", "Usuarios recibidos: $listaProductos")
-                TiendaUIState.ObtenerProductosExito(listaProductos)
+                ProductosUIState.ObtenerExito(listaProductos)
             } catch (e: Exception){
+                Log.e("TiendaViewModel", "Error al obtener los productos", e)
+                ProductosUIState.Error
+            }
+
+        }
+    }
+
+    fun anyadirProoductoUsuario (id: String, usuario: Usuario) {
+        viewModelScope.launch {
+            // Me aseguro de que esta en cargando el estado
+            tiendaUIState = TiendaUIState.Cargando
+
+            tiendaUIState = try {
+                val usuarioInsertado = usuarioRepositorio.actualizarUsuario(
+                    id = id,
+                    usuario = usuario
+                )
+                TiendaUIState.ActualizarExito(usuario)
+            }catch (e: Exception){
                 Log.e("TiendaViewModel", "Error al obtener los productos", e)
                 TiendaUIState.Error
             }
-
         }
     }
 

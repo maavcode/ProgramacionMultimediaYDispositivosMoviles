@@ -14,15 +14,12 @@ fun PantallaInicio(
     when (estado) {
         is TiendaUIState.Cargando -> PantallaCargando()
         is TiendaUIState.Error -> PantallaError()
-        is TiendaUIState.ObtenerUsuariosExito ->
+        is TiendaUIState.ObtenerExito ->
             PantallaUsuarios(
                 listaUsuarios = estado.listaUsuarios,
                 onUsuarioPulsado = onUsuarioPulsado
             )
-        is TiendaUIState.ObtenerProductosExito ->
-            PantallaAnyadirProductos(
-                listaProductos = estado.listaProductos,
-                onAnyadirProducto = onAnyadirProducto
-            )
+
+        else -> {}
     }
 }

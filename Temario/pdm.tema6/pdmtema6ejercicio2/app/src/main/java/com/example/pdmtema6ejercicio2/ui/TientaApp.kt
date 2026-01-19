@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,6 +30,7 @@ import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaAnyadirProductos
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaInicio
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaProductos
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaUsuario
+import com.example.pdmtema6ejercicio2.ui.viewmodel.ProductosUIState
 import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaViewModel
 
 
@@ -88,7 +90,6 @@ fun TiendaApp(
                     usuario = tiendaViewModel.usuarioSeleccionado,
                     onListarPulsado = {navController.navigate(route = Pantallas.PantallaProductos.name)},
                     onAnyadirProductos = {
-                        tiendaViewModel.obtenerProductos()
                         navController.navigate(route = Pantallas.PantallaAnyadirProductos.name)
                     }
                 )
@@ -99,9 +100,20 @@ fun TiendaApp(
                     listaProductos = tiendaViewModel.usuarioSeleccionado.productos
                 )
             }
-//            composable (rote) {
-//
-//            }
+
+            composable (route = Pantallas.PantallaAnyadirProductos.name) {
+                LaunchedEffect(Unit) {
+                    tiendaViewModel.obtenerProductos()
+                }
+
+                PantallaAnyadirProductos(
+                    estado = tiendaViewModel.productoUIState,
+                    onAnyadirProducto = {
+                        tiendaViewModel.actualizarUsuarioSeleccionado(it)
+                    }
+                )
+            }
+
         }
     }
 }
