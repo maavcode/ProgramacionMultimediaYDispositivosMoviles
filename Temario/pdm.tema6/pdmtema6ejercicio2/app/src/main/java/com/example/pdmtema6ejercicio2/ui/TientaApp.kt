@@ -28,17 +28,26 @@ import androidx.navigation.compose.rememberNavController
 import com.example.pdmtema6ejercicio2.R
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaAnyadirProductos
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaInicio
+import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaInsertarProducto
+import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaModificarProductos
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaProductos
+import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaProductosUsuario
 import com.example.pdmtema6ejercicio2.ui.pantallas.PantallaUsuario
 import com.example.pdmtema6ejercicio2.ui.viewmodel.ProductosUIState
 import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaViewModel
 
 
 enum class Pantallas (@StringRes val titulo: Int) {
+    // USUARIO
     PantallaInicio (titulo = R.string.pantalla_inicio),
     PantallaUsuario (titulo = R.string.pantalla_usuario),
+    PantallaProductosUsuario(titulo = R.string.pantalla_productos_usuario),
+    PantallaAnyadirProductos(titulo = R.string.pantalla_anyadir_productos),
+
+    //PRODUCTO
     PantallaProductos(titulo = R.string.pantalla_productos),
-    PantallaAnyadirProductos(titulo = R.string.pantalla_anyadir_productos)
+    PantallaInsertarProducto(titulo = R.string.pantalla_insertar_producto),
+    PantallaModificarProductos(titulo = R.string.pantalla_modificar_productos)
 }
 
 @Composable
@@ -79,8 +88,9 @@ fun TiendaApp(
                         tiendaViewModel.actualizarUsuarioSeleccionado(it)
                         navController.navigate(route = Pantallas.PantallaUsuario.name)
                     },
-                    onAnyadirProducto = {
+                    onModificarProductos = {
                         tiendaViewModel.obtenerProductos()
+                        navController.navigate(route = Pantallas.PantallaProductos.name)
                     }
                 )
             }
@@ -88,16 +98,18 @@ fun TiendaApp(
                 Log.d("TiendaViewModel", "Estado: ${tiendaViewModel.tiendaUIState}")
                 PantallaUsuario(
                     usuario = tiendaViewModel.usuarioSeleccionado,
-                    onListarPulsado = {navController.navigate(route = Pantallas.PantallaProductos.name)},
+                    onListarPulsado = {
+                        navController.navigate(route = Pantallas.PantallaProductosUsuario.name)
+                    },
                     onAnyadirProductos = {
                         tiendaViewModel.obtenerProductos()
                         navController.navigate(route = Pantallas.PantallaAnyadirProductos.name)
                     }
                 )
             }
-            composable ( route = Pantallas.PantallaProductos.name ) {
+            composable ( route = Pantallas.PantallaProductosUsuario.name ) {
                 Log.d("TiendaViewModel", "Estado: ${tiendaViewModel.tiendaUIState}")
-                PantallaProductos(
+                PantallaProductosUsuario(
                     listaProductos = tiendaViewModel.usuarioSeleccionado.productos
                 )
             }
@@ -107,7 +119,26 @@ fun TiendaApp(
                     estado = tiendaViewModel.productoUIState,
                     onAnyadirProducto = {
                         tiendaViewModel.anyadirProductoUsuario(producto = it)
-                        tiendaViewModel.obtenerUsuarios()
+                    }
+                )
+            }
+
+            composable (route = Pantallas.PantallaProductos.name){
+                PantallaProductos (
+                    estado = tiendaViewModel.productoUIState,
+                    onInsertarProducto = {
+                        navController.navigate(route = Pantallas.PantallaInsertarProducto.name)
+                    },
+                    onModificarProducto = {
+                        navController.navigate(route = Pantallas.PantallaModificarProductos.name)
+                    }
+                )
+            }
+
+            composable (route = Pantallas.PantallaInsertarProducto.name){
+                PantallaInsertarProducto (
+                    onInsertarProducto = {
+                        tiendaViewModel.insertarProducto(producto = it)
                     }
                 )
             }

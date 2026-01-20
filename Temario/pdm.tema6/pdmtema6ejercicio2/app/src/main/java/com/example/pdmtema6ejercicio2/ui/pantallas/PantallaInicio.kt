@@ -9,7 +9,7 @@ import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaUIState
 fun PantallaInicio(
     estado: TiendaUIState,
     onUsuarioPulsado: (usuario: Usuario) -> Unit,
-    onAnyadirProducto: () -> Unit
+    onModificarProductos: () -> Unit
 ) {
     when (estado) {
         is TiendaUIState.Cargando -> PantallaCargando()
@@ -17,7 +17,8 @@ fun PantallaInicio(
         is TiendaUIState.ObtenerExito ->
             PantallaUsuarios(
                 listaUsuarios = estado.listaUsuarios,
-                onUsuarioPulsado = onUsuarioPulsado
+                onUsuarioPulsado = onUsuarioPulsado,
+                onModificarProductos = onModificarProductos
             )
 
         else -> {}

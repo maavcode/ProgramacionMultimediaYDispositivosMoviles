@@ -45,6 +45,8 @@ fun PantallaAnyadirProductos(
                 }
             }
         }
+
+        is ProductosUIState.InsertarExito -> {}
     }
 
 }

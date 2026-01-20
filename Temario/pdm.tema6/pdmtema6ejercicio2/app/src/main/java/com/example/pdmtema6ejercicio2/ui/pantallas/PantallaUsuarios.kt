@@ -1,6 +1,7 @@
 package com.example.pdmtema6ejercicio2.ui.pantallas
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -12,18 +13,31 @@ import com.example.pdmtema6ejercicio2.modelo.Usuario
 @Composable
 fun PantallaUsuarios(
     listaUsuarios: List<Usuario>,
-    onUsuarioPulsado: (usuario: Usuario) -> Unit
+    onUsuarioPulsado: (usuario: Usuario) -> Unit,
+    onModificarProductos: () -> Unit
 ){
     LazyColumn (
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ){
-        items(listaUsuarios){ usuario ->
+        item {
             Button(
-                onClick = {onUsuarioPulsado(usuario)}
+                onClick = {onModificarProductos()}
             ) {
+                Text("Modificar productos")
+            }
+        }
+        items(listaUsuarios){ usuario ->
+            Row {
                 Text(
                     text = usuario.nombre
                 )
+                Button(
+                    onClick = {onUsuarioPulsado(usuario)}
+                ) {
+                    Text(
+                        text = "Elegir"
+                    )
+                }
             }
         }
     }

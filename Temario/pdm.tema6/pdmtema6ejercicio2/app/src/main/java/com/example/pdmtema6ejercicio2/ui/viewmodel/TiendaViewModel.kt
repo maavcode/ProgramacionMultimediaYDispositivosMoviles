@@ -22,7 +22,7 @@ import java.io.IOException
 sealed interface TiendaUIState {
     // EXITOS
     data class ObtenerExito(val listaUsuarios: List<Usuario>) : TiendaUIState
-    data class ActualizarExito(val Usuario: Usuario) : TiendaUIState
+    data class ActualizarExito(val usuario: Usuario) : TiendaUIState
 
     // Otros estados
     object Cargando : TiendaUIState
@@ -32,7 +32,7 @@ sealed interface TiendaUIState {
 sealed interface ProductosUIState {
     // EXITOS
     data class ObtenerExito(val listaProductos: List<Producto>): ProductosUIState;
-
+    data class InsertarExito(val producto: Producto): ProductosUIState
     // Otros estados
     object Cargando : ProductosUIState
     object Error : ProductosUIState
@@ -117,6 +117,23 @@ class TiendaViewModel (
                 TiendaUIState.Error
             } finally {
                 obtenerUsuarios()
+            }
+        }
+    }
+
+    fun insertarProducto(producto: Producto){
+        viewModelScope.launch {
+            productoUIState = ProductosUIState.Cargando
+
+            productoUIState = try {
+                productoRepositorio.insertarProducto(producto.id, producto)
+                Log.d("EXITO", "Producto: $producto añadido correctamente")
+                ProductosUIState.InsertarExito(producto)
+            }catch (e: Exception){
+                Log.e("TiendaViewModel", "Error al obtener los productos", e)
+                ProductosUIState.Error
+            } finally {
+                obtenerProductos()
             }
         }
     }

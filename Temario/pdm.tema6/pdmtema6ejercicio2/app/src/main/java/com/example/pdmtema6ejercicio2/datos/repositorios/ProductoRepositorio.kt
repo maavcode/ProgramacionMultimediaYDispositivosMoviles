@@ -6,10 +6,12 @@ import com.example.pdmtema6ejercicio2.modelo.Usuario
 
 interface ProductoRepositorio {
     suspend fun obtenerProductos(): List<Producto>
+    suspend fun insertarProducto(id: String, producto: Producto): Producto
 }
 
 class ConexionProductoRepositorio(
     private val tiendaServicioAPI: TiendaServicioAPI
 ): ProductoRepositorio {
     override suspend fun obtenerProductos(): List<Producto> = tiendaServicioAPI.obtenerProductos()
+    override suspend fun insertarProducto(id: String, producto: Producto): Producto = tiendaServicioAPI.insertarProducto(id, producto)
 }

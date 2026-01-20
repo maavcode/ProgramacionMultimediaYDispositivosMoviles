@@ -42,4 +42,9 @@ interface TiendaServicioAPI {
     @GET("productos")
     suspend fun obtenerProductos(
     ): List<Producto>
+    @POST("productos/{id}")
+    suspend fun insertarProducto(
+        @Path("id")id: String,
+        @Body producto: Producto
+    ): Producto
 }

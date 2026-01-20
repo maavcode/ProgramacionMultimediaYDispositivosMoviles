@@ -9,4 +9,7 @@
     <string name="pantalla_listarproductos">Pantalla ListarProductos</string>
     <string name="pantalla_productos">Pantalla Productos</string>
     <string name="pantalla_anyadir_productos">Pantalla Anyadir Productos</string>
+    <string name="pantalla_modificar_productos">Pantalla Modificar Productos</string>
+    <string name="pantalla_productos_usuario">Pantalla Productos Usuario</string>
+    <string name="pantalla_insertar_producto">Pantalla Insertar Producto</string>
 </resources>
