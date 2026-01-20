@@ -15,7 +15,8 @@ import com.example.pdmtema6ejercicio2.ui.viewmodel.ProductosUIState
 fun PantallaProductos(
     estado: ProductosUIState,
     onInsertarProducto: () -> Unit,
-    onModificarProducto: (Producto) -> Unit
+    onModificarProducto: (Producto) -> Unit,
+    onObtenerProductos: () -> Unit
 ){
     when (estado){
         is ProductosUIState.Cargando -> PantallaCargando()
@@ -55,9 +56,7 @@ fun PantallaProductos(
                 }
             }
         }
-        is ProductosUIState.InsertarExito -> {
-
-        }
+        is ProductosUIState.InsertarExito -> onObtenerProductos()
     }
 
 }

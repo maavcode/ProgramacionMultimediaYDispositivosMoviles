@@ -115,8 +115,6 @@ class TiendaViewModel (
             }catch (e: Exception){
                 Log.e("TiendaViewModel", "Error al obtener los productos", e)
                 TiendaUIState.Error
-            } finally {
-                obtenerUsuarios()
             }
         }
     }

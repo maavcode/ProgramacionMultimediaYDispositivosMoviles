@@ -91,7 +91,8 @@ fun TiendaApp(
                     onModificarProductos = {
                         tiendaViewModel.obtenerProductos()
                         navController.navigate(route = Pantallas.PantallaProductos.name)
-                    }
+                    },
+                    onObtenerUsuarios = { tiendaViewModel.obtenerUsuarios() }
                 )
             }
             composable (route = Pantallas.PantallaUsuario.name) {
@@ -102,7 +103,6 @@ fun TiendaApp(
                         navController.navigate(route = Pantallas.PantallaProductosUsuario.name)
                     },
                     onAnyadirProductos = {
-                        tiendaViewModel.obtenerProductos()
                         navController.navigate(route = Pantallas.PantallaAnyadirProductos.name)
                     }
                 )
@@ -131,6 +131,9 @@ fun TiendaApp(
                     },
                     onModificarProducto = {
                         navController.navigate(route = Pantallas.PantallaModificarProductos.name)
+                    },
+                    onObtenerProductos = {
+                        tiendaViewModel.obtenerProductos()
                     }
                 )
             }
