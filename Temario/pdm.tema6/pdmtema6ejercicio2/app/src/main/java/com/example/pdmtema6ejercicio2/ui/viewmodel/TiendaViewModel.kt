@@ -97,20 +97,26 @@ class TiendaViewModel (
         }
     }
 
-    fun anyadirProoductoUsuario (id: String, usuario: Usuario) {
+    fun anyadirProductoUsuario (producto: Producto) {
         viewModelScope.launch {
             // Me aseguro de que esta en cargando el estado
             tiendaUIState = TiendaUIState.Cargando
 
+            val usuarioActualizado = usuarioSeleccionado.copy(
+                productos = usuarioSeleccionado.productos + producto
+            )
+            actualizarUsuarioSeleccionado(usuarioActualizado)
+
             tiendaUIState = try {
-                val usuarioInsertado = usuarioRepositorio.actualizarUsuario(
-                    id = id,
-                    usuario = usuario
-                )
-                TiendaUIState.ActualizarExito(usuario)
+
+                usuarioRepositorio.actualizarUsuario(usuarioSeleccionado.id, usuarioSeleccionado)
+                Log.d("EXITO", "Usuario: $usuarioSeleccionado añadido correctamente")
+                TiendaUIState.ActualizarExito(usuarioSeleccionado)
             }catch (e: Exception){
                 Log.e("TiendaViewModel", "Error al obtener los productos", e)
                 TiendaUIState.Error
+            } finally {
+                obtenerUsuarios()
             }
         }
     }

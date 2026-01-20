@@ -90,6 +90,7 @@ fun TiendaApp(
                     usuario = tiendaViewModel.usuarioSeleccionado,
                     onListarPulsado = {navController.navigate(route = Pantallas.PantallaProductos.name)},
                     onAnyadirProductos = {
+                        tiendaViewModel.obtenerProductos()
                         navController.navigate(route = Pantallas.PantallaAnyadirProductos.name)
                     }
                 )
@@ -102,14 +103,11 @@ fun TiendaApp(
             }
 
             composable (route = Pantallas.PantallaAnyadirProductos.name) {
-                LaunchedEffect(Unit) {
-                    tiendaViewModel.obtenerProductos()
-                }
-
                 PantallaAnyadirProductos(
                     estado = tiendaViewModel.productoUIState,
                     onAnyadirProducto = {
-                        tiendaViewModel.actualizarUsuarioSeleccionado(it)
+                        tiendaViewModel.anyadirProductoUsuario(producto = it)
+                        tiendaViewModel.obtenerUsuarios()
                     }
                 )
             }

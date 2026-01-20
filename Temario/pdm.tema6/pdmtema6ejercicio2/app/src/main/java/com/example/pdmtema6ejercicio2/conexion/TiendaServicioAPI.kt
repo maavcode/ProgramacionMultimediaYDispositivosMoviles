@@ -26,7 +26,7 @@ interface TiendaServicioAPI {
         @Body usuario: Usuario
     ): Usuario
     */
-    @PUT("usuario/{id}")
+    @PUT("usuarios/{id}")
     suspend fun actualizarUsuario(
         @Path("id") id : String,
         @Body usuario: Usuario
