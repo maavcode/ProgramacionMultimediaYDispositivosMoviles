@@ -57,6 +57,7 @@ fun PantallaProductos(
             }
         }
         is ProductosUIState.InsertarExito -> onObtenerProductos()
+        is ProductosUIState.ActualizarExito -> onObtenerProductos()
     }
 
 }

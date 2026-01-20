@@ -33,6 +33,7 @@ sealed interface ProductosUIState {
     // EXITOS
     data class ObtenerExito(val listaProductos: List<Producto>): ProductosUIState;
     data class InsertarExito(val producto: Producto): ProductosUIState
+    data class ActualizarExito(val producto: Producto): ProductosUIState
     // Otros estados
     object Cargando : ProductosUIState
     object Error : ProductosUIState
@@ -52,9 +53,16 @@ class TiendaViewModel (
     var usuarioSeleccionado: Usuario by mutableStateOf(Usuario("","","","",listOf()))
         private set
 
+    var productoSeleccionado: Producto by mutableStateOf(Producto("","",""))
+        private set
+
     // IMPORTANTE TRABAJAR CON MODELOS
     fun actualizarUsuarioSeleccionado(usuario: Usuario){
         usuarioSeleccionado = usuario
+    }
+
+    fun actualizarProductoSeleccionado(producto: Producto){
+        productoSeleccionado = producto
     }
 
     init {
@@ -132,6 +140,20 @@ class TiendaViewModel (
                 ProductosUIState.Error
             } finally {
                 obtenerProductos()
+            }
+        }
+    }
+
+    fun actualizarProducto(producto: Producto){
+        viewModelScope.launch {
+            productoUIState = ProductosUIState.Cargando
+
+            productoUIState = try {
+                val productoActualizado = productoRepositorio.actualizarProducto(producto.id, producto)
+
+                ProductosUIState.ActualizarExito(productoActualizado)
+            } catch (e: IOException) {
+                ProductosUIState.Error
             }
         }
     }

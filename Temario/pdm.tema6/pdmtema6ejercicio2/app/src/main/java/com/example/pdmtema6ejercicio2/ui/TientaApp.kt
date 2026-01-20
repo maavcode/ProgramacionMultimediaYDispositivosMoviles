@@ -103,6 +103,7 @@ fun TiendaApp(
                         navController.navigate(route = Pantallas.PantallaProductosUsuario.name)
                     },
                     onAnyadirProductos = {
+                        tiendaViewModel.obtenerProductos()
                         navController.navigate(route = Pantallas.PantallaAnyadirProductos.name)
                     }
                 )
@@ -119,7 +120,9 @@ fun TiendaApp(
                     estado = tiendaViewModel.productoUIState,
                     onAnyadirProducto = {
                         tiendaViewModel.anyadirProductoUsuario(producto = it)
-                    }
+                        navController.navigate(route = Pantallas.PantallaUsuario.name)
+                    },
+                    onObtenerProductos = {tiendaViewModel.obtenerProductos()}
                 )
             }
 
@@ -130,6 +133,7 @@ fun TiendaApp(
                         navController.navigate(route = Pantallas.PantallaInsertarProducto.name)
                     },
                     onModificarProducto = {
+                        tiendaViewModel.actualizarProductoSeleccionado(it)
                         navController.navigate(route = Pantallas.PantallaModificarProductos.name)
                     },
                     onObtenerProductos = {
@@ -142,6 +146,16 @@ fun TiendaApp(
                 PantallaInsertarProducto (
                     onInsertarProducto = {
                         tiendaViewModel.insertarProducto(producto = it)
+                        navController.navigate(route = Pantallas.PantallaProductos.name)
+                    }
+                )
+            }
+            composable (route = Pantallas.PantallaModificarProductos.name){
+                PantallaModificarProductos (
+                    producto = tiendaViewModel.productoSeleccionado,
+                    onModificarProducto = {
+                        tiendaViewModel.actualizarProducto(it)
+                        navController.navigate(route = Pantallas.PantallaProductos.name)
                     }
                 )
             }

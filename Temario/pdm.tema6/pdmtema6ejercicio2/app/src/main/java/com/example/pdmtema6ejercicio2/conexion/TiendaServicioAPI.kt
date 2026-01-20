@@ -47,4 +47,9 @@ interface TiendaServicioAPI {
         @Path("id")id: String,
         @Body producto: Producto
     ): Producto
+    @PUT("productos/{id}")
+    suspend fun actualizarProducto(
+        @Path("id")id : String,
+        @Body producto: Producto
+    ): Producto
 }

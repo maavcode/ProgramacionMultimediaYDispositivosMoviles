@@ -42,6 +42,46 @@
           "id": "2",
           "nombre": "pantalones",
           "precio": "25.0"
+        },
+        {
+          "id": "3",
+          "nombre": "zapatillas",
+          "precio": "35.0"
+        },
+        {
+          "id": "3",
+          "nombre": "zapatillas",
+          "precio": "35.0"
+        },
+        {
+          "id": "1",
+          "nombre": "camiseta",
+          "precio": "20.0"
+        },
+        {
+          "id": "fbae",
+          "nombre": "Chandal",
+          "precio": "15.99"
+        },
+        {
+          "id": "2",
+          "nombre": "pantalones",
+          "precio": "25.0"
+        },
+        {
+          "id": "9aff",
+          "nombre": "Gafas",
+          "precio": "149.50"
+        },
+        {
+          "id": "1",
+          "nombre": "camiseta azul",
+          "precio": "20.0"
+        },
+        {
+          "id": "1",
+          "nombre": "camiseta azul",
+          "precio": "20.0"
         }
       ]
     },
@@ -60,6 +100,11 @@
           "id": "2",
           "nombre": "pantalones",
           "precio": "25.0"
+        },
+        {
+          "id": "1",
+          "nombre": "camiseta",
+          "precio": "20.0"
         }
       ]
     }
@@ -67,7 +112,7 @@
   "productos": [
     {
       "id": "1",
-      "nombre": "camiseta",
+      "nombre": "camiseta azul",
       "precio": "20.0"
     },
     {
@@ -79,6 +124,36 @@
       "id": "3",
       "nombre": "zapatillas",
       "precio": "35.0"
+    },
+    {
+      "id": "fbae",
+      "nombre": "Chandal",
+      "precio": "15.99"
+    },
+    {
+      "id": "6d00",
+      "nombre": "Jersey",
+      "precio": "21.04"
+    },
+    {
+      "id": "9aff",
+      "nombre": "Gafas",
+      "precio": "149.50"
+    },
+    {
+      "id": "a33d",
+      "nombre": "Chandal de Mario Herrero",
+      "precio": "999.00"
+    },
+    {
+      "id": "c1d2",
+      "nombre": "Lo que quieras",
+      "precio": "Patata"
+    },
+    {
+      "id": "7889",
+      "nombre": "Hola",
+      "precio": "20.0"
     }
   ],
   "usuariosAndres": [

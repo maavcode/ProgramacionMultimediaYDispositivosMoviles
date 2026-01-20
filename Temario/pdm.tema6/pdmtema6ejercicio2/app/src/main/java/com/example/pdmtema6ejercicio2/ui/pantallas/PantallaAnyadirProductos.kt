@@ -15,7 +15,8 @@ import com.example.pdmtema6ejercicio2.ui.viewmodel.TiendaUIState
 @Composable
 fun PantallaAnyadirProductos(
     estado: ProductosUIState,
-    onAnyadirProducto: (Producto) -> Unit
+    onAnyadirProducto: (Producto) -> Unit,
+    onObtenerProductos: () -> Unit
 ){
     when (estado){
         is ProductosUIState.Cargando -> PantallaCargando()
@@ -46,7 +47,8 @@ fun PantallaAnyadirProductos(
             }
         }
 
-        is ProductosUIState.InsertarExito -> {}
+        is ProductosUIState.InsertarExito -> onObtenerProductos()
+        is ProductosUIState.ActualizarExito -> onObtenerProductos()
     }
 
 }
