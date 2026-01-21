@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SimulacroConversaciones</string>
+    <string name="pantalla_inicio">Pantalla Inicio\n</string>
+    <string name="atras">Atras</string>
+</resources>
