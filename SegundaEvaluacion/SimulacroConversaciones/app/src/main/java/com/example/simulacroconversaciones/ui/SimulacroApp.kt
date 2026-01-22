@@ -24,11 +24,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.simulacroconversaciones.R
+import com.example.simulacroconversaciones.ui.pantallas.PantallaConversacion
 import com.example.simulacroconversaciones.ui.pantallas.PantallaInicio
 import com.example.simulacroconversaciones.ui.viewmodel.SimulacroViewModel
 
 enum class Pantallas (@StringRes val titulo: Int) {
     PantallaInicio (titulo = R.string.pantalla_inicio),
+    PantallaConversacion(titulo = R.string.pantalla_conversacion)
 }
 
 @Composable
@@ -144,7 +146,20 @@ fun SimulacroApp(
              */
             composable (route = Pantallas.PantallaInicio.name) {
                 PantallaInicio(
-
+                    estado = simulacroViewModel.simulacroUIState,
+                    cargarUsuarios = { simulacroViewModel.obtenerUsuarios() },
+                    onPantallaConversacion = {
+                        simulacroViewModel.actualizarUsuarioSeleccionado(it)
+                        navController.navigate(route = Pantallas.PantallaConversacion.name)
+                    }
+                )
+            }
+            composable (route = Pantallas.PantallaConversacion.name){
+                PantallaConversacion(
+                    usuario = simulacroViewModel.usuarioSeleccionado,
+                    onEscribirMensaje = {
+                        simulacroViewModel.actualizarMensajesUsuario(it)
+                    }
                 )
             }
         }

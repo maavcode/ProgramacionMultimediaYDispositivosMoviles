@@ -1,6 +1,7 @@
 package com.example.simulacroconversaciones.datos.repositorios
 
 import com.example.simulacroconversaciones.conexion.SimulacroServicioAPI
+import com.example.simulacroconversaciones.modelo.Usuario
 
 interface SimulacroRepositorio {
     /* EJEMPLO
@@ -8,7 +9,8 @@ interface SimulacroRepositorio {
     suspend fun insertarProducto(id: String, producto: Producto): Producto
     suspend fun actualizarProducto(id: String, producto: Producto): Producto
      */
-
+    suspend fun obtenerUsuarios(): List<Usuario>
+    suspend fun actualizarUsuario(id: String, usuario: Usuario):Usuario
 }
 
 class ConexionSimulacroRepositorio(
@@ -19,5 +21,6 @@ class ConexionSimulacroRepositorio(
     override suspend fun insertarProducto(id: String, producto: Producto): Producto = tiendaServicioAPI.insertarProducto(id, producto)
     override suspend fun actualizarProducto(id: String, producto: Producto): Producto = tiendaServicioAPI.actualizarProducto(id, producto)
      */
-
+    override suspend fun obtenerUsuarios(): List<Usuario> = simulacroServicioAPI.obtenerUsuarios()
+    override suspend fun actualizarUsuario(id: String, usuario: Usuario): Usuario = simulacroServicioAPI.actualizarUsuario(id, usuario)
 }

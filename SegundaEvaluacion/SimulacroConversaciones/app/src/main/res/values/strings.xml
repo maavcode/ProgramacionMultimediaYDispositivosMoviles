@@ -2,4 +2,7 @@
     <string name="app_name">SimulacroConversaciones</string>
     <string name="pantalla_inicio">Pantalla Inicio\n</string>
     <string name="atras">Atras</string>
+    <string name="error_de_conexion">Error De Conexion</string>
+    <string name="cargando">Cargando</string>
+    <string name="pantalla_conversacion">Pantalla Conversacion</string>
 </resources>

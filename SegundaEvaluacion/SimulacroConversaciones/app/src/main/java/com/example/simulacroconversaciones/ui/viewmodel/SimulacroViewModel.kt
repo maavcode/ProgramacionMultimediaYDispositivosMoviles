@@ -1,14 +1,20 @@
 package com.example.simulacroconversaciones.ui.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.simulacroconversaciones.SimulacroAplicacion
+import com.example.simulacroconversaciones.datos.repositorios.SimulacroRepositorio
+import com.example.simulacroconversaciones.modelo.Mensaje
+import com.example.simulacroconversaciones.modelo.Usuario
+import kotlinx.coroutines.launch
 
 sealed interface SimulacroUIState {
     // EXITOS
@@ -16,15 +22,21 @@ sealed interface SimulacroUIState {
     data class ObtenerExito(val listaUsuarios: List<Usuario>) : TiendaUIState
     data class ActualizarExito(val usuario: Usuario) : TiendaUIState
      */
-
+    data class ObtenerUsuariosExito(val listaUsuarios: List<Usuario>): SimulacroUIState
+    data class ActualizarUsuarioExito(val usuario: Usuario): SimulacroUIState
     // OTROS
     object Cargando : SimulacroUIState
     object Error : SimulacroUIState
 }
 
-class SimulacroViewModel (
-
-): ViewModel(){
+class SimulacroViewModel(
+    // Añado repositorios
+    /* EJEMPLO
+    private val usuarioRepositorio: UsuarioRepositorio,
+    private val productoRepositorio: ProductoRepositorio
+     */
+    private val simulacroRepositorio: SimulacroRepositorio
+) : ViewModel(){
     // Inicializo el UIState en el ViewModel
     var simulacroUIState: SimulacroUIState by mutableStateOf(SimulacroUIState.Cargando)
         private set
@@ -44,13 +56,18 @@ class SimulacroViewModel (
         productoSeleccionado = producto
     }
      */
+    var usuarioSeleccionado: Usuario by mutableStateOf(Usuario("","","",listOf()))
+
+    fun actualizarUsuarioSeleccionado(usuario: Usuario){
+        usuarioSeleccionado = usuario
+    }
 
     // LO QUE SE EJECUTA AL INICIAL EL PROGRAMA
     init {
     /* EJEMPLO
         obtenerUsuarios()
      */
-
+        obtenerUsuarios()
     }
     // FUNCIONES CRUD
     /* EJEMPLO FUNCIONES CRUD
@@ -123,7 +140,37 @@ class SimulacroViewModel (
         }
     }
      */
+    fun obtenerUsuarios(){
+        viewModelScope.launch {
+            simulacroUIState = SimulacroUIState.Cargando
+            simulacroUIState = try {
+                val listaUsuarios = simulacroRepositorio.obtenerUsuarios()
+                Log.d("EXITO USUARIO","Usuarios recibidos: $listaUsuarios")
+                SimulacroUIState.ObtenerUsuariosExito(listaUsuarios)
+            } catch (e: Exception){
+                Log.e("USUARIOS", "Error al obtener los usuarios", e)
+                SimulacroUIState.Error
+            }
+        }
+    }
+    fun actualizarMensajesUsuario(mensaje: Mensaje){
+        viewModelScope.launch {
+            simulacroUIState = SimulacroUIState.Cargando
 
+            val usuarioActualizado = usuarioSeleccionado.copy(
+                mensajes = usuarioSeleccionado.mensajes + mensaje
+            )
+            actualizarUsuarioSeleccionado(usuarioActualizado)
+            simulacroUIState = try {
+                simulacroRepositorio.actualizarUsuario(usuarioSeleccionado.id, usuarioSeleccionado)
+                Log.d("EXITO USUARIO","Usuario actualizado con exito")
+                SimulacroUIState.ActualizarUsuarioExito(usuarioActualizado)
+            } catch (e: Exception){
+                Log.e("USUARIOS", "Error al actualizar el usuario", e)
+                SimulacroUIState.Error
+            }
+        }
+    }
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
@@ -133,6 +180,7 @@ class SimulacroViewModel (
                 val usuarioRepositorio = aplicacion.contenedor.usuarioRepositorio
                 val productoRepositorio = aplicacion.contenedor.productoRepositorio
                  */
+                val simulacroRepositorio = aplicacion.contenedor.simulacroRepositorio
 
                 SimulacroViewModel(
                     // Repositorios
@@ -140,6 +188,7 @@ class SimulacroViewModel (
                     usuarioRepositorio = usuarioRepositorio,
                     productoRepositorio = productoRepositorio
                     */
+                    simulacroRepositorio = simulacroRepositorio
 
                 )
             }

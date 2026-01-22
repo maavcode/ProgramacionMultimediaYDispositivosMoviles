@@ -1,6 +1,8 @@
 package com.example.simulacroconversaciones.datos
 
 import com.example.simulacroconversaciones.conexion.SimulacroServicioAPI
+import com.example.simulacroconversaciones.datos.repositorios.ConexionSimulacroRepositorio
+import com.example.simulacroconversaciones.datos.repositorios.SimulacroRepositorio
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -11,6 +13,7 @@ interface IContenedorApp {
     /* EJEMPLO
     val usuarioRepositorio: UsuarioRepositorio
      */
+    val simulacroRepositorio: SimulacroRepositorio
 
 }
 
@@ -33,5 +36,8 @@ class ContenedorApp: IContenedorApp {
         ConexionProductoRepositorio(servicioRetrofit)
     }
      */
+    override val simulacroRepositorio: SimulacroRepositorio by lazy {
+        ConexionSimulacroRepositorio(servicioRetrofit)
+    }
 
 }
