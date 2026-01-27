@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ServerJsonExamen01</string>
+    <string name="cargando">Cargando</string>
+    <string name="error_de_conexion">Error de Conexion</string>
+    <string name="pantalla_inicio">Pantalla Inicio</string>
+    <string name="atras">Atras</string>
+    <string name="alumno">Alumno</string>
+    <string name="alumnado">Alumnado</string>
+    <string name="profesorado">Profesorado</string>
+    <string name="profesor">Profesor</string>
+</resources>
