@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SimulacroConversaciones</string>
+    <string name="pantalla_inicio">Pantalla Inicio\n</string>
+    <string name="atras">Atras</string>
+    <string name="error_de_conexion">Error De Conexion</string>
+    <string name="cargando">Cargando</string>
+    <string name="pantalla_conversacion">Pantalla Conversacion</string>
+    <string name="pantalla_insertar_usuario">Pantalla Insertar Usuario</string>
+    <string name="texto_insertar_usuario">Texto insertar usuario</string>
+</resources>
