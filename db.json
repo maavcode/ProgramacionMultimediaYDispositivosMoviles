@@ -213,5 +213,55 @@
       "nombre": "zapatillas",
       "precio": "35.0"
     }
+  ],
+  "usuariosPlantillasMenu": [
+    {
+      "nombre": "Mario",
+      "apellido1": "Aguilar",
+      "apellido2": "Avila",
+      "descripcion": "Atleta",
+      "fechaRegistro": "27/01/2026",
+      "horaRegistro": "13:34"
+    },
+    {
+      "nombre": "Lucia",
+      "apellido1": "Martinez",
+      "apellido2": "Santos",
+      "descripcion": "Ingeniera",
+      "fechaRegistro": "27/01/2026",
+      "horaRegistro": "13:34"
+    },
+    {
+      "nombre": "Carlos",
+      "apellido1": "Ramirez",
+      "apellido2": "Lopez",
+      "descripcion": "Profesor",
+      "fechaRegistro": "27/01/2026",
+      "horaRegistro": "13:34"
+    },
+    {
+      "nombre": "Ana",
+      "apellido1": "Gomez",
+      "apellido2": "Herrera",
+      "descripcion": "Doctora",
+      "fechaRegistro": "27/01/2026",
+      "horaRegistro": "13:34"
+    },
+    {
+      "nombre": "Javier",
+      "apellido1": "Torres",
+      "apellido2": "Ruiz",
+      "descripcion": "Programador",
+      "fechaRegistro": "27/01/2026",
+      "horaRegistro": "13:34"
+    },
+    {
+      "nombre": "Sofia",
+      "apellido1": "Navarro",
+      "apellido2": "Cano",
+      "descripcion": "Diseñadora",
+      "fechaRegistro": "27/01/2026",
+      "horaRegistro": "13:34"
+    }
   ]
 }

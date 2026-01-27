@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Ud6_Ejemplo3</string>
+    <string name="pantalla_inicio">Inicio</string>
+    <string name="insertar">Insertar Tabajador</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="atras">Atrás</string>
+    <string name="cargando">Cargando</string>
+    <string name="error">Error</string>
+    <string name="insertar_trabajador">Insertar trabajador</string>
+</resources>

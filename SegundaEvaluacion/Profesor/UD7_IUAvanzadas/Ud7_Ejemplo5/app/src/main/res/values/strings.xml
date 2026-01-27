@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Ud7_Ejemplo5</string>
+    <string name="mostrar_fecha">Mostrar Fecha</string>
+    <string name="mostrar_hora">Mostrar Hora</string>
+    <string name="ninguna_fecha_seleccinada">Ninguna fecha seleccinada.</string>
+    <string name="ninguna_hora_seleccionada">Ninguna hora seleccionada.</string>
+    <string name="fecha_seleccionada">Fecha seleccionada: %1$s</string>
+    <string name="hora_seleccionada">Hora seleccionada: %1$s:%2$s</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+</resources>
+

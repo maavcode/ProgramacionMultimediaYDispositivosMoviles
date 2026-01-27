@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">plantillaNavigationDrawer</string>
+    <string name="pantalla_incio">Pantalla Incio</string>
+    <string name="pantalla_insertar">Pantalla Insertar</string>
+    <string name="pantalla_listar">Pantalla Listar</string>
+    <string name="atras">Atras</string>
+    <string name="abrir_menu">Abrir Menu</string>
+    <string name="ajustes">Ajustes</string>
+</resources>

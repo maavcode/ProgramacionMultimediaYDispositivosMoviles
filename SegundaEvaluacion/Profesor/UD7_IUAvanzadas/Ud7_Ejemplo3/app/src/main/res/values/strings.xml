@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Ud7_Ejemplo3</string>
+    <string name="inicio">Inicio</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="perfil">Perfil</string>
+    <string name="atras">Atrás</string>
+    <string name="abrir_menu">Abrir menú</string>
+</resources>

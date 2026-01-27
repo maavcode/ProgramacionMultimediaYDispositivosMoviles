@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Ud7_Ejemplo1</string>
+    <string name="pantalla_inicio">Pantalla de inicio</string>
+    <string name="pantalla1">Primera Pantalla</string>
+    <string name="pantalla2">Segunda Pantalla</string>
+    <string name="atras">Atras</string>
+    <string name="segunda_pantalla">Segunda Pantalla</string>
+    <string name="inicio">Inicio</string>
+</resources>
