@@ -21,10 +21,10 @@ sealed interface PlantillaUIState {
     data class ObtenerExito(val listaUsuarios: List<Usuario>) : TiendaUIState
     data class ActualizarExito(val usuario: Usuario) : TiendaUIState
      */
-    data class obtenerExito(val listaUsuarios: List<Usuario>): PlantillaUIState
-    data class actualizarExito(val usuarioActualizado: Usuario): PlantillaUIState
-    data class insertarExito(val usuarioInsertado: Usuario): PlantillaUIState
-    data class eliminarExito(val usuarioEliminado: Usuario): PlantillaUIState
+    data class ObtenerExito(val listaUsuarios: List<Usuario>): PlantillaUIState
+    data class ActualizarExito(val usuarioActualizado: Usuario): PlantillaUIState
+    data class InsertarExito(val usuarioInsertado: Usuario): PlantillaUIState
+    data class EliminarExito(val usuarioEliminado: Usuario): PlantillaUIState
 
     // OTROS
     object Cargando : PlantillaUIState
@@ -148,7 +148,7 @@ class PlantillaViewModel (
                 // Obtengo el usuario
                 val listaUsuarios = plantillaRepositorio.obtenerUsuarios()
                 Log.d("EXITO", "Usuarios recibidos: $listaUsuarios")
-                PlantillaUIState.obtenerExito(listaUsuarios)
+                PlantillaUIState.ObtenerExito(listaUsuarios)
             } catch (e: Exception){
                 Log.e("ERROR", "Error al obtener los usuarios", e)
                 PlantillaUIState.Error
@@ -167,7 +167,37 @@ class PlantillaViewModel (
 
                 plantillaRepositorio.actualizarUsuario(usuarioSeleccionado.id, usuarioSeleccionado)
                 Log.d("EXITO", "Usuario: $usuario añadido correctamente")
-                PlantillaUIState.actualizarExito(usuario)
+                PlantillaUIState.ActualizarExito(usuario)
+            }catch (e: Exception){
+                Log.e("ERROR", "Error al obtener los usuarios", e)
+                PlantillaUIState.Error
+            }
+        }
+    }
+
+    fun insertarUsuario(usuario: Usuario){
+        viewModelScope.launch {
+            plantillaUIState = PlantillaUIState.Cargando
+
+            plantillaUIState = try {
+                plantillaRepositorio.insertarUsuario(usuario)
+                Log.d("EXITO", "Usuario: $usuario añadido correctamente")
+                PlantillaUIState.InsertarExito(usuario)
+            }catch (e: Exception){
+                Log.e("ERROR", "Error al obtener los usuarios", e)
+                PlantillaUIState.Error
+            }
+        }
+    }
+
+    fun eliminarUsuario(usuario: Usuario){
+        viewModelScope.launch {
+            plantillaUIState = PlantillaUIState.Cargando
+
+            plantillaUIState = try {
+                plantillaRepositorio.eliminarUsuario(usuario.id)
+                Log.d("EXITO", "Usuario: $usuario eliminado correctamente")
+                PlantillaUIState.EliminarExito(usuario)
             }catch (e: Exception){
                 Log.e("ERROR", "Error al obtener los usuarios", e)
                 PlantillaUIState.Error

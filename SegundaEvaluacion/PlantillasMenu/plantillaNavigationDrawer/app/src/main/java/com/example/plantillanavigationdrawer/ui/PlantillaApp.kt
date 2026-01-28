@@ -56,16 +56,18 @@ import androidx.navigation.compose.rememberNavController
 import com.example.plantillanavigationdrawer.R
 import com.example.plantillanavigationdrawer.datos.DrawerMenu
 import com.example.plantillanavigationdrawer.ui.pantallas.PantallaInicio
-import com.example.plantillanavigationdrawer.ui.pantallas.PantallaInsertar
-import com.example.plantillanavigationdrawer.ui.pantallas.PantallaListar
+import com.example.plantillanavigationdrawer.ui.pantallas.PantallaInsertarReserva
+import com.example.plantillanavigationdrawer.ui.pantallas.PantallaInsertarUsuario
+import com.example.plantillanavigationdrawer.ui.pantallas.PantallaListarReservas
 import com.example.plantillanavigationdrawer.ui.viewmodel.PlantillaViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 enum class Pantallas(@StringRes val titulo: Int) {
     PantallaInicio(titulo = R.string.pantalla_incio),
-    PantallaInsertarUsuario(titulo = R.string.pantalla_insertar_usuario),
-    PantallaInsertarReserva(titulo = R.string.pantalla_insertar_reserva)
+    PantallaListarReservas(titulo = R.string.pantalla_listar_reservas),
+    PantallaInsertarReserva(titulo = R.string.pantalla_insertar_reserva),
+    PantallaInsertarUsuario(titulo = R.string.pantalla_insertar_usuario)
 }
 
 val menu = arrayOf(
@@ -119,10 +121,10 @@ fun PlantillaApp(
                 )
             },
             floatingActionButton = {
-                if(pantallaActual == Pantallas.PantallaInsertarReserva) {
+                if(pantallaActual == Pantallas.PantallaListarReservas) {
                     FloatingActionButton(
                         onClick = {
-                            navController.navigate(route = Pantallas.PantallaInsertarUsuario.name)
+                            navController.navigate(route = Pantallas.PantallaInsertarReserva.name)
                         }
                     ) {
                         Icon(
@@ -142,12 +144,43 @@ fun PlantillaApp(
                 composable (route = Pantallas.PantallaInicio.name) {
                     PantallaInicio(
                         estado = plantillaViewModel.plantillaUIState,
-                        obtenerUsuarios = {plantillaViewModel.obtenerUsuarios()}
+                        obtenerUsuarios = {plantillaViewModel.obtenerUsuarios()},
+                        onListarReservas = {
+                            plantillaViewModel.actualizarUsuarioSeleccionado(it)
+                            navController.navigate(route = Pantallas.PantallaListarReservas.name)
+                        },
+                        onEliminarUsuario = {
+                            plantillaViewModel.eliminarUsuario(it)
+                        }
+
                     )
                 }
                 composable (route = Pantallas.PantallaInsertarUsuario.name) {
-                    PantallaInsertar(
-
+                    PantallaInsertarUsuario(
+                        onCancelar = {
+                            navController.navigate(route = Pantallas.PantallaInicio.name)
+                        },
+                        onAceptar = {
+                            plantillaViewModel.insertarUsuario(it)
+                            navController.navigate(route = Pantallas.PantallaInicio.name)
+                        }
+                    )
+                }
+                composable (route = Pantallas.PantallaListarReservas.name){
+                    PantallaListarReservas(
+                        usuario = plantillaViewModel.usuarioSeleccionado,
+                        onEliminarReserva = {
+                            plantillaViewModel.actualizarUsuario(it)
+                        }
+                    )
+                }
+                composable (route = Pantallas.PantallaInsertarReserva.name) {
+                    PantallaInsertarReserva(
+                        usuarioSeleccionado = plantillaViewModel.usuarioSeleccionado,
+                        onAceptar = {
+                            plantillaViewModel.actualizarUsuario(it)
+                            navController.navigate(route = Pantallas.PantallaListarReservas.name)
+                        }
                     )
                 }
             }

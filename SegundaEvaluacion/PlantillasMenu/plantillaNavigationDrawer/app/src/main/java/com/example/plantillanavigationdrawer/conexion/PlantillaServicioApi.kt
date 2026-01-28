@@ -46,6 +46,6 @@ interface PlantillaServicioApi {
     ): Usuario
     @DELETE("usuariosPlantillasMenu/{id}")
     suspend fun eliminarUsuario(
-        @Path("id" )id : String,
+        @Path("id" )id : String
     ): Usuario
 }

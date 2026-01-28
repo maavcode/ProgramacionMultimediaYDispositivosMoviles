@@ -11,4 +11,12 @@
     <string name="texto_insertar_usuario">TextoInsertarUsuario</string>
     <string name="pantalla_insertar_usuario">Pantalla Insertar Usuario</string>
     <string name="pantalla_insertar_reserva">Pantalla Insertar Reserva</string>
+    <string name="pantalla_listar_reservas">Pantalla Listar Reservas</string>
+    <string name="pantalla_modificar_usuario">Pantalla Modificar Usuario</string>
+    <string name="fecha_seleccionada">Fecha Seleccionada</string>
+    <string name="ninguna_fecha_seleccinada">Ninguna Fecha Seleccionada</string>
+    <string name="hora_seleccionada">Hora Seleccionada</string>
+    <string name="ninguna_hora_seleccionada">Ninguna Hora Seleccionada</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
