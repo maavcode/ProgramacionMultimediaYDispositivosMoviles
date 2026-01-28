@@ -1,15 +1,19 @@
 package com.example.plantillanavigationdrawer.ui.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.plantillanavigationdrawer.PlantillaAplicacion
 import com.example.plantillanavigationdrawer.datos.repositorios.PlantillaRepositorio
+import com.example.plantillanavigationdrawer.modelo.Usuario
+import kotlinx.coroutines.launch
 
 sealed interface PlantillaUIState {
     // EXITOS
@@ -17,7 +21,10 @@ sealed interface PlantillaUIState {
     data class ObtenerExito(val listaUsuarios: List<Usuario>) : TiendaUIState
     data class ActualizarExito(val usuario: Usuario) : TiendaUIState
      */
-
+    data class obtenerExito(val listaUsuarios: List<Usuario>): PlantillaUIState
+    data class actualizarExito(val usuarioActualizado: Usuario): PlantillaUIState
+    data class insertarExito(val usuarioInsertado: Usuario): PlantillaUIState
+    data class eliminarExito(val usuarioEliminado: Usuario): PlantillaUIState
 
     // OTROS
     object Cargando : PlantillaUIState
@@ -45,12 +52,19 @@ class PlantillaViewModel (
         productoSeleccionado = producto
     }
      */
+    var usuarioSeleccionado: Usuario by mutableStateOf(Usuario("","","","",listOf()))
+        private set
+
+    fun actualizarUsuarioSeleccionado(usuario: Usuario){
+        usuarioSeleccionado = usuario
+    }
 
     // LO QUE SE EJECUTA AL INICIAL EL PROGRAMA
     init {
         /* EJEMPLO
             obtenerUsuarios()
          */
+        obtenerUsuarios()
     }
 
     // FUNCIONES CRUD
@@ -124,6 +138,42 @@ class PlantillaViewModel (
         }
     }
      */
+
+    fun obtenerUsuarios(){
+        viewModelScope.launch {
+            // Me aseguro de que esta en cargando el estado
+            plantillaUIState = PlantillaUIState.Cargando
+
+            plantillaUIState = try {
+                // Obtengo el usuario
+                val listaUsuarios = plantillaRepositorio.obtenerUsuarios()
+                Log.d("EXITO", "Usuarios recibidos: $listaUsuarios")
+                PlantillaUIState.obtenerExito(listaUsuarios)
+            } catch (e: Exception){
+                Log.e("ERROR", "Error al obtener los usuarios", e)
+                PlantillaUIState.Error
+            }
+
+        }
+    }
+    fun actualizarUsuario (usuario: Usuario) {
+        viewModelScope.launch {
+            // Me aseguro de que esta en cargando el estado
+            plantillaUIState = PlantillaUIState.Cargando
+
+            actualizarUsuarioSeleccionado(usuario)
+
+            plantillaUIState = try {
+
+                plantillaRepositorio.actualizarUsuario(usuarioSeleccionado.id, usuarioSeleccionado)
+                Log.d("EXITO", "Usuario: $usuario añadido correctamente")
+                PlantillaUIState.actualizarExito(usuario)
+            }catch (e: Exception){
+                Log.e("ERROR", "Error al obtener los usuarios", e)
+                PlantillaUIState.Error
+            }
+        }
+    }
 
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {

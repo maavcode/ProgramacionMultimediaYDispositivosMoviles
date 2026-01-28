@@ -216,52 +216,112 @@
   ],
   "usuariosPlantillasMenu": [
     {
+      "id": "1",
       "nombre": "Mario",
       "apellido1": "Aguilar",
       "apellido2": "Avila",
-      "descripcion": "Atleta",
-      "fechaRegistro": "27/01/2026",
-      "horaRegistro": "13:34"
+      "reservas": [
+        {
+          "numPersonas": "4",
+          "fechaReserva": "27/01/2026",
+          "horaReserva": "13:34"
+        },
+        {
+          "numPersonas": "2",
+          "fechaReserva": "29/01/2026",
+          "horaReserva": "21:30"
+        }
+      ]
     },
     {
+      "id": "2",
       "nombre": "Lucia",
       "apellido1": "Martinez",
       "apellido2": "Santos",
-      "descripcion": "Ingeniera",
-      "fechaRegistro": "27/01/2026",
-      "horaRegistro": "13:34"
+      "reservas": [
+        {
+          "numPersonas": "3",
+          "fechaReserva": "05/02/2026",
+          "horaReserva": "20:00"
+        },
+        {
+          "numPersonas": "1",
+          "fechaReserva": "12/02/2026",
+          "horaReserva": "14:15"
+        }
+      ]
     },
     {
+      "id": "3",
       "nombre": "Carlos",
       "apellido1": "Ramirez",
       "apellido2": "Lopez",
-      "descripcion": "Profesor",
-      "fechaRegistro": "27/01/2026",
-      "horaRegistro": "13:34"
+      "reservas": [
+        {
+          "numPersonas": "2",
+          "fechaReserva": "03/02/2026",
+          "horaReserva": "19:45"
+        },
+        {
+          "numPersonas": "5",
+          "fechaReserva": "10/02/2026",
+          "horaReserva": "12:30"
+        }
+      ]
     },
     {
+      "id": "4",
       "nombre": "Ana",
       "apellido1": "Gomez",
       "apellido2": "Herrera",
-      "descripcion": "Doctora",
-      "fechaRegistro": "27/01/2026",
-      "horaRegistro": "13:34"
+      "reservas": [
+        {
+          "numPersonas": "4",
+          "fechaReserva": "08/02/2026",
+          "horaReserva": "21:00"
+        },
+        {
+          "numPersonas": "2",
+          "fechaReserva": "15/02/2026",
+          "horaReserva": "13:00"
+        }
+      ]
     },
     {
+      "id": "5",
       "nombre": "Javier",
       "apellido1": "Torres",
       "apellido2": "Ruiz",
-      "descripcion": "Programador",
-      "fechaRegistro": "27/01/2026",
-      "horaRegistro": "13:34"
+      "reservas": [
+        {
+          "numPersonas": "1",
+          "fechaReserva": "02/02/2026",
+          "horaReserva": "18:20"
+        },
+        {
+          "numPersonas": "3",
+          "fechaReserva": "11/02/2026",
+          "horaReserva": "22:10"
+        }
+      ]
     },
     {
+      "id": "6",
       "nombre": "Sofia",
       "apellido1": "Navarro",
       "apellido2": "Cano",
-      "descripcion": "Diseñadora",
-      "fechaRegistro": "27/01/2026",
-      "horaRegistro": "13:34"
+      "reservas": [
+        {
+          "numPersonas": "2",
+          "fechaReserva": "04/02/2026",
+          "horaReserva": "17:45"
+        },
+        {
+          "numPersonas": "6",
+          "fechaReserva": "14/02/2026",
+          "horaReserva": "20:30"
+        }
+      ]
     }
   ]
 }

@@ -22,6 +22,7 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -46,6 +47,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -56,19 +58,19 @@ import com.example.plantillanavigationdrawer.datos.DrawerMenu
 import com.example.plantillanavigationdrawer.ui.pantallas.PantallaInicio
 import com.example.plantillanavigationdrawer.ui.pantallas.PantallaInsertar
 import com.example.plantillanavigationdrawer.ui.pantallas.PantallaListar
+import com.example.plantillanavigationdrawer.ui.viewmodel.PlantillaViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 enum class Pantallas(@StringRes val titulo: Int) {
     PantallaInicio(titulo = R.string.pantalla_incio),
-    PantallaInsertar(titulo = R.string.pantalla_insertar),
-    PantallaListar(titulo = R.string.pantalla_listar)
+    PantallaInsertarUsuario(titulo = R.string.pantalla_insertar_usuario),
+    PantallaInsertarReserva(titulo = R.string.pantalla_insertar_reserva)
 }
 
 val menu = arrayOf(
     DrawerMenu(Icons.Filled.Face, Pantallas.PantallaInicio.titulo, Pantallas.PantallaInicio.name),
-    DrawerMenu(Icons.Filled.Add, Pantallas.PantallaInsertar.titulo, Pantallas.PantallaInsertar.name),
-    DrawerMenu(Icons.Filled.List, Pantallas.PantallaListar.titulo, Pantallas.PantallaListar.name)
+    DrawerMenu(Icons.Filled.Add, Pantallas.PantallaInsertarUsuario.titulo, Pantallas.PantallaInsertarUsuario.name)
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,6 +88,8 @@ fun PlantillaApp(
     )
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+
+    val plantillaViewModel: PlantillaViewModel = viewModel(factory = PlantillaViewModel.Factory)
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -113,6 +117,20 @@ fun PlantillaApp(
                     navController = navController,
                     scrollBehavior = scrollBehavior
                 )
+            },
+            floatingActionButton = {
+                if(pantallaActual == Pantallas.PantallaInsertarReserva) {
+                    FloatingActionButton(
+                        onClick = {
+                            navController.navigate(route = Pantallas.PantallaInsertarUsuario.name)
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Add,
+                            contentDescription = stringResource(R.string.texto_insertar_usuario)
+                        )
+                    }
+                }
             }
         ) { innerPadding ->
             NavHost(
@@ -123,16 +141,12 @@ fun PlantillaApp(
                 // Grafo de las rutas
                 composable (route = Pantallas.PantallaInicio.name) {
                     PantallaInicio(
-
+                        estado = plantillaViewModel.plantillaUIState,
+                        obtenerUsuarios = {plantillaViewModel.obtenerUsuarios()}
                     )
                 }
-                composable (route = Pantallas.PantallaInsertar.name) {
+                composable (route = Pantallas.PantallaInsertarUsuario.name) {
                     PantallaInsertar(
-
-                    )
-                }
-                composable (route = Pantallas.PantallaListar.name) {
-                    PantallaListar(
 
                     )
                 }
@@ -212,7 +226,7 @@ fun AppTopBar(
             }
         },
         actions = {
-            if(pantallaActual == Pantallas.PantallaInicio) {
+            if(pantallaActual == Pantallas.PantallaInsertarUsuario) {
                 IconButton(onClick = { mostrarMenu = true }) {
                     Icon(
                         imageVector = Icons.Outlined.MoreVert,
@@ -223,13 +237,6 @@ fun AppTopBar(
                     expanded = mostrarMenu,
                     onDismissRequest = { mostrarMenu = false }
                 ) {
-                    DropdownMenuItem(
-                        text = { Text(text = stringResource(id = R.string.pantalla_listar)) },
-                        onClick = {
-                            mostrarMenu = false
-                            navController.navigate(Pantallas.PantallaListar.name)
-                        }
-                    )
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.pantalla_incio)) },
                         onClick = {

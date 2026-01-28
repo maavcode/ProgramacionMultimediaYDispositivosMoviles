@@ -6,4 +6,9 @@
     <string name="atras">Atras</string>
     <string name="abrir_menu">Abrir Menu</string>
     <string name="ajustes">Ajustes</string>
+    <string name="cargando">Cargando</string>
+    <string name="error_de_conexion">Error de Conexion</string>
+    <string name="texto_insertar_usuario">TextoInsertarUsuario</string>
+    <string name="pantalla_insertar_usuario">Pantalla Insertar Usuario</string>
+    <string name="pantalla_insertar_reserva">Pantalla Insertar Reserva</string>
 </resources>
