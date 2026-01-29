@@ -147,7 +147,7 @@ class PlantillaViewModel (
             plantillaUIState = try {
                 // Obtengo el usuario
                 val listaUsuarios = plantillaRepositorio.obtenerUsuarios()
-                Log.d("EXITO", "Usuarios recibidos: $listaUsuarios")
+                Log.d("EXITO OBTENER", "Usuarios recibidos: $listaUsuarios")
                 PlantillaUIState.ObtenerExito(listaUsuarios)
             } catch (e: Exception){
                 Log.e("ERROR", "Error al obtener los usuarios", e)
@@ -166,7 +166,7 @@ class PlantillaViewModel (
             plantillaUIState = try {
 
                 plantillaRepositorio.actualizarUsuario(usuarioSeleccionado.id, usuarioSeleccionado)
-                Log.d("EXITO", "Usuario: $usuario añadido correctamente")
+                Log.d("EXITO ACTUALIZAR", "Usuario: $usuario actualizado correctamente")
                 PlantillaUIState.ActualizarExito(usuario)
             }catch (e: Exception){
                 Log.e("ERROR", "Error al obtener los usuarios", e)
@@ -181,7 +181,7 @@ class PlantillaViewModel (
 
             plantillaUIState = try {
                 plantillaRepositorio.insertarUsuario(usuario)
-                Log.d("EXITO", "Usuario: $usuario añadido correctamente")
+                Log.d("EXITO INSERTAR", "Usuario: $usuario añadido correctamente")
                 PlantillaUIState.InsertarExito(usuario)
             }catch (e: Exception){
                 Log.e("ERROR", "Error al obtener los usuarios", e)
@@ -196,7 +196,7 @@ class PlantillaViewModel (
 
             plantillaUIState = try {
                 plantillaRepositorio.eliminarUsuario(usuario.id)
-                Log.d("EXITO", "Usuario: $usuario eliminado correctamente")
+                Log.d("EXITO ELIMINAR", "Usuario: $usuario eliminado correctamente")
                 PlantillaUIState.EliminarExito(usuario)
             }catch (e: Exception){
                 Log.e("ERROR", "Error al obtener los usuarios", e)
