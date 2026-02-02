@@ -19,4 +19,5 @@
     <string name="ninguna_hora_seleccionada">Ninguna Hora Seleccionada</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="pantalla_insertar_usuario_favorito">Pantalla Insertar Usuario Favorito</string>
 </resources>

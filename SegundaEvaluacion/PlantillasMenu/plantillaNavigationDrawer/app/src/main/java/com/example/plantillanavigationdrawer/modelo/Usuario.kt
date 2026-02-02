@@ -14,5 +14,5 @@ data class Usuario(
     @SerialName("apellido2")
     val apellido2: String = "",
     @SerialName("reservas")
-    val reservas: List<Reserva>
+    val reservas: List<Reserva> = mutableListOf<Reserva>()
 )

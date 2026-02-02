@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.MoreVert
@@ -72,7 +73,8 @@ enum class Pantallas(@StringRes val titulo: Int) {
 
 val menu = arrayOf(
     DrawerMenu(Icons.Filled.Face, Pantallas.PantallaInicio.titulo, Pantallas.PantallaInicio.name),
-    DrawerMenu(Icons.Filled.Add, Pantallas.PantallaInsertarUsuario.titulo, Pantallas.PantallaInsertarUsuario.name)
+    DrawerMenu(Icons.Filled.Add, Pantallas.PantallaInsertarUsuario.titulo, Pantallas.PantallaInsertarUsuario.name),
+    DrawerMenu(Icons.Filled.Favorite, Pantallas.PantallaInicio.titulo, Pantallas.PantallaInicio.name) // TODO()
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -271,10 +273,10 @@ fun AppTopBar(
                     onDismissRequest = { mostrarMenu = false }
                 ) {
                     DropdownMenuItem(
-                        text = { Text(text = stringResource(id = R.string.pantalla_incio)) },
+                        text = { Text(text = stringResource(id = R.string.pantalla_insertar_usuario_favorito)) },
                         onClick = {
                             mostrarMenu = false
-                            navController.navigate(Pantallas.PantallaInicio.name)
+                            navController.navigate(Pantallas.PantallaInicio.name) //TODO()
                         }
                     )
                 }
